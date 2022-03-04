@@ -1,0 +1,11 @@
+{
+  "name": "social-network-api",
+  "version": "1.0.0",
+  "description": "An API using MongoDB and Mongoose for a Model.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Erik Plachta",
+  "license": "MIT"
+}
