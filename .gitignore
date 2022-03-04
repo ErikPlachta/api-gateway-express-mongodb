@@ -1,0 +1,5 @@
+_ARCHIVE
+node_modules
+.env
+package-lock.json
+*.code-workspace
