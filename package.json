@@ -4,8 +4,10 @@
   "description": "An API using MongoDB and Mongoose for a Model.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "test": "jest",
+    "start": "node server.js",
+    "watch": "nodemon server.js"
+},
   "author": "Erik Plachta",
   "license": "MIT",
   "dependencies": {
