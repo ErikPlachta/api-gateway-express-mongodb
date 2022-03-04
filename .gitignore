@@ -2,4 +2,4 @@ _ARCHIVE
 node_modules
 .env
 package-lock.json
-.code-workspace
+social-network-api.code-workspace
