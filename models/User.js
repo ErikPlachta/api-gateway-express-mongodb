@@ -23,7 +23,8 @@ const UserSchema = new Schema(
         },
         date_created: {
           type: Date,
-          default: Date.now
+          default: Date.now,
+          get: date_creted_value => dateFormat(date_creted_value)
         },
         date_login: {
           type: Date,
