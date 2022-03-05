@@ -31,8 +31,14 @@ const UserSchema = new Schema(
           default: Date.now
         },
         //-- related to other schemas
-        thoughts: [],
-        friends: []
+        thoughts: [{
+          type: Schema.Types.ObjectId, 
+          ref: 'Thought'
+        }],
+        friends: [{
+          type: Schema.Types.ObjectId, 
+          ref: 'User'
+        }]
       },
       {
         toJSON: {
