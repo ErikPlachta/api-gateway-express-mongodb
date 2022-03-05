@@ -7,9 +7,9 @@ const thoughtRoutes = require('./thought-routes');
 
 //------------------------------------------------------------------------------
 //-- Routing
-
 router.use('/users', userRoutes);
 router.use('/thoughts', thoughtRoutes);
+
 
 //-- if gets here when rounting, throw 404
 router.use((req, res) => {
