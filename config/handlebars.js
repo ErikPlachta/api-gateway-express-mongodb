@@ -4,7 +4,8 @@ const path = require('path');
 //-- assigning helper function route to handlebars and onboarding
 const exphbs = require('express-handlebars');
 const helpers = require('../utils/helpers');
+
 const hbs = exphbs.create({helpers});
 
 
-module.exports = {hbs}
+module.exports = hbs;
