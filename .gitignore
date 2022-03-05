@@ -1,5 +1,8 @@
 _ARCHIVE
 node_modules
-.env
 package-lock.json
-social-network-api.code-workspace
+.vscode
+.DS_Store
+_ARCHIVE
+.env
+*.code-workspace
