@@ -1,4 +1,5 @@
 //-- Imports
+const WebUser = require('./WebUser');
 const User = require('./User');
 const Reaction = require('./Reaction');
 const Thought = require('./Thought');
@@ -6,4 +7,4 @@ const Thought = require('./Thought');
 //-----------------------------------------------------------------------------
 //-- Exports
 
-module.exports = { User, Reaction, Thought };
+module.exports = { WebUser, User, Reaction, Thought };
