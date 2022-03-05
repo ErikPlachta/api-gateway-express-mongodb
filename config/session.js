@@ -7,8 +7,8 @@ const sessionStore = require('connect-session-sequelize')(session.Store);
 
 //-- session env
 const sess = {
-    // TODO:: REMOVE THIS ASAP!
-    secret: process.env.SECRET_TECH_BLOG,
+  
+    secret: process.env.SECRET,
     cookie: {
       // Session expires after 10 mins of inactivity.
       expires: 600000
