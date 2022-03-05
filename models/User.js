@@ -28,7 +28,10 @@ const UserSchema = new Schema(
         date_login: {
           type: Date,
           default: Date.now
-        }
+        },
+        //-- related to other schemas
+        thoughts: [],
+        friends: []
       },
       {
         toJSON: {
@@ -37,6 +40,11 @@ const UserSchema = new Schema(
         id: false
       }
 );
+
+//-- virtual getting total friends
+UserSchema.virtual('friendCount').get(function() {
+  return this.friends.reduce((total, friend) => total + 1, 0);
+});
 
 
 const User = model('User', UserSchema);
