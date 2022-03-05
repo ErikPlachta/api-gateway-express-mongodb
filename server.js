@@ -17,13 +17,9 @@ app.use(express.static('public'));
 // Use this to log mongo queries being executed
 mongoose.set('debug', true);
 
-
 app.use(routes);
 
-// app.listen(PORT, () => console.log(`🌍 Connected on http://127.0.0.1:${PORT}`));
-
-//-- use xisting tables if exist, start connection to express and SQL
+//-- Use existing tables if exist, start connection to express and SQL
 sequelize.sync({ force: false }).then(() => {
-    // sequelize.sync({ force: true }).then(() => { //-- Overvwrite existing tables if exist, start connection to express and SQL
-      app.listen(PORT, () => console.log(`Now listening on http://127.0.0.1:${PORT}`));
+  app.listen(PORT, () => console.log(`Now listening on http://127.0.0.1:${PORT}`));
 });

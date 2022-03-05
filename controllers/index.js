@@ -1,11 +1,9 @@
 //-- Import Express and create router to share existing express instance
 const router = require('express').Router();
-
-//-- Importing other routes to ensure existing express has access 
 const apiRoutes = require('./api');
-router.use('/api', apiRoutes);
-
 const homeRoutes = require('./home-routes');
+
+router.use('/api', apiRoutes);
 router.use('/', homeRoutes);
 
 
@@ -24,7 +22,6 @@ router.use((req, res) => {
             response: {
                 status: 404,
                 message: "Rquest failure. Page not found."
-        
             }
     }).end();
     

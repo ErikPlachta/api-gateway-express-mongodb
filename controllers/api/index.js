@@ -3,16 +3,13 @@
 const router = require('express').Router();
 
 const userRoutes = require('./user-routes');
-const reactionRoutes = require('./reaction-routes');
 const thoughtRoutes = require('./thought-routes');
 
 //------------------------------------------------------------------------------
 //-- Routing
 
 router.use('/users', userRoutes);
-router.use('/reactions', reactionRoutes);
 router.use('/thoughts', thoughtRoutes);
-
 
 //-- if gets here when rounting, throw 404
 router.use((req, res) => {
