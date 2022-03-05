@@ -3,7 +3,7 @@
 const express = require('express');
 const path = require('path'); //-- access to stylesheet within express app for Handlebars.js
 
-//-- Session & Handlebars
+//-- Sessions
 const session = require('express-session');
 //-- for creation session records
 const sessionStore = require('connect-session-sequelize')(session.Store);
