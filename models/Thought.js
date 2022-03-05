@@ -19,8 +19,12 @@ const ThoughtSchema = new Schema(
           default: Date.now
         },
         //-- related to other schemas
-        thoughts: [],
-        friends: []
+        username: {
+            type: String,
+            required: true,
+            ref: 'User',
+            field: 'username'
+        }
       },
       {
         toJSON: {
