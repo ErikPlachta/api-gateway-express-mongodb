@@ -4,13 +4,25 @@
   "description": "An API using MongoDB and Mongoose for a Model.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeds/seed.js"
   },
   "author": "Erik Plachta",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.2",
+    "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "googleapis": "^95.0.0"
+    "express-handlebars": "^6.0.3",
+    "express-session": "^1.17.2",
+    "googleapis": "^95.0.0",
+    "moment": "^2.29.1",
+    "mongoose": "^6.2.4",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.17.0"
   },
   "devDependencies": {
     "jest": "^27.5.1",
