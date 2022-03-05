@@ -6,7 +6,7 @@ const path = require('path'); //-- access to stylesheet within express app for H
 //-- Session & Handlebars
 const session = require('express-session');
 //-- for creation session records
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const sessionStore = require('connect-session-sequelize')(session.Store);
 
 //-- assigning helper function route to handlebars and onboarding
 const exphbs = require('express-handlebars');
@@ -35,7 +35,7 @@ const sess = {
   // Forces a session that is "uninitialized"
   // to be saved to the store
   saveUninitialized: false,
-  store: new SequelizeStore({ db: sequelize  })
+  store: new sessionStore({ db: sequelize  })
 };
 
 
