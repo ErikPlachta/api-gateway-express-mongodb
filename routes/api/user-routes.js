@@ -10,13 +10,13 @@ const {
     deleteUserById
   } = require('../../controllers/user-controller');
   
-  // /api/pizzas
+  // /api/user
   router
     .route('/')
     .get(getAllUsers)
     .post(createUser)
   
-  // /api/pizzas/:id
+  // /api/user/:id
   router
     .route('/:id')
     .get(getUserById)
