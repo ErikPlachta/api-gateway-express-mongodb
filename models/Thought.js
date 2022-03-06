@@ -1,48 +1,12 @@
-const { Schema, model } = require('mongoose');
+//-- IMPORTS
+const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const ThoughtSchema = new Schema(
-    {
-        text: {
-            type: String,
-            minlength: 1,
-            maxlength: 280,
-            required: 'ERROR: Text must be between 1 - 280 characters',
-        },
-        date_created: {
-            type: Date,
-            default: Date.now,
-            get: date_creted_value => dateFormat(date_creted_value)
-        },
-        //-- Username of user that created thought
-        username: {
-            type: String,
-            required: true,
-            ref: 'User',
-            field: 'username'
-        },
-        //-- reactions to thought
-        reactions: [{
-            documents: [{
-                type: Schema.Types.ObjectId,
-                ref: 'Reaction'
-            }],
-            user_ids: [{
-                type: Schema.Types.ObjectId,
-                ref: 'User'
-            }]
-        }]
-    },
-    {
-        toJSON: {
-          virtuals: true,
-          getters: true
-        }
-    }
-);
 
+//-- SCHEMAS
 
-const ReactionSceham = new Schema(
+const ReactionSchema = new Schema(
+    //-- A response to a thought created by a user
     {
         reactionId: {
             type: Schema.Types.ObjectId, 
@@ -66,11 +30,40 @@ const ReactionSceham = new Schema(
         },
     },
     {
-        toJSON: {
-            virtuals: true,
-            getters: true
-        }
+        toJSON: { getters: true },
+        id: false 
     }
+);
+
+
+const ThoughtSchema = new Schema(
+    //-- A root post/thought created by a user
+    {
+        text: {
+            type: String,
+            minlength: 1,
+            maxlength: 280,
+            required: 'ERROR: Text must be between 1 - 280 characters',
+        },
+        //-- Username of user that created thought
+        username: {
+            type: String,
+            required: true,
+            ref: 'User',
+            field: 'username'
+        },
+        date_created: {
+            type: Date,
+            default: Date.now,
+            get: date_creted_value => dateFormat(date_creted_value)
+        },
+        //-- reactions to thought
+        reactions: [ReactionSchema]
+    },
+    { 
+        toJSON: { virtuals: true, getters: true },
+        // id: false
+    },
 );
 
 
