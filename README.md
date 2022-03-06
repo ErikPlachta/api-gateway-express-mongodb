@@ -1,25 +1,45 @@
-# API Gateway for a Social Work Platform - Concept App
+# API Gateway for a Social Network Platform - Concept App
+
+## Summary
 
 I built this App because I wanted to learn more about using a NoSQL Database in
 collaboration with an Express server running on Node. I used MongoDB as my
 Database, and Mongoose as my ODM.
 
-## Index
+## The Concept
 
-- [API Gateway for a Social Work Platform - Concept App](#api-gateway-for-a-social-work-platform---concept-app)
-  - [Index](#index)
+I've built a social network platform with a fully-functional API Gateway.
+
+- All activity within the platform is tied to a unique `User`.
+- A `User` has full crud-functionality.
+- A `User` post or delete friends, which must be another `User` in the platform.
+- A `User` can post or delete `Thoughts`, which are posts.
+- A `User` can post or delete a `Reactions` to `Users` `Thoughts`, are resposnes to a thought.
+
+---
+
+## Table of Contents
+
+- [API Gateway for a Social Network Platform - Concept App](#api-gateway-for-a-social-network-platform---concept-app)
+  - [Summary](#summary)
+  - [The Concept](#the-concept)
+  - [Table of Contents](#table-of-contents)
   - [Getting Setup](#getting-setup)
     - [A. Headless   | MongoDB & Express](#a-headless----mongodb--express)
       - [Requirements - Getting Set Up for Headless](#requirements---getting-set-up-for-headless)
     - [B. Full-Stack | MongoDB, MySQL, Express, Handlebars](#b-full-stack--mongodb-mysql-express-handlebars)
       - [Requirements - Getting Setup for Full-Stack](#requirements---getting-setup-for-full-stack)
-  - [Using the API](#using-the-api)
-    - [`User` CRUD Functionality](#user-crud-functionality)
+  - [API Reference Guide](#api-reference-guide)
+    - [**`User`**](#user)
+      - [**POST** - Create New `User`](#post---create-new-user)
+    - [**`User.friends`**](#userfriends)
   - [Node Package Dependencies](#node-package-dependencies)
   - [Repo Stats](#repo-stats)
   - [Contributors](#contributors)
     - [Erik Plachta](#erik-plachta)
   - [Questions?](#questions)
+
+---
 
 ## Getting Setup
 
@@ -65,20 +85,56 @@ Controller, and View for a complete user experience.
 
 ---
 
-## Using the API
+## API Reference Guide
 
-### `User` CRUD Functionality
+### **`User`**
+> Accounts with access to API functionality
 
-- **GET** - ALL `User` accounts
-  > URL 👉🏼 `http://localhost/api/users/`
-- **GET** - Single `User` account by `id`
-  > `http://localhost/api/users/:id`
-- **POST** - New `User`
-  > `http://localhost/api/users/`
-- **PUT** - Change `User` values
-  > `http://localhost/api/users/`
-- **DELETE** - Remove `User`
-  > `http://localhost/api/users/:id`
+#### **POST** - Create New `User`
+
+**`/api/users/`**
+
+>Example:
+>
+> POST to 👉🏼 `127.0.0.1:3001/api/users/` with JSON body
+>
+> ```json
+> {
+>   "username"  : "ErikPlachta",
+>   "email"     : "erik@noemail.com",
+>   "password"  : "my-password"
+> }
+> ```
+
+**GET** - ALL `User` accounts
+
+**`/api/users/`**
+
+> Example:
+>
+>
+
+**GET** - Single `User` account by `id`
+> `/api/users/:id`
+>> Example: 
+
+**PUT** - Change `User` values
+> `/api/users/`
+>> Example: 
+
+**DELETE** - Remove `User`
+> `/api/users/:id`
+
+### **`User.friends`** 
+> Association to toher users by `User`.`id`
+> URL 👉🏼 /api/users/:userId/friends/:friendId
+
+- **POST** - Create 1-way associtation to a `User` in  `User`.`friends`
+> URL 👉🏼 /api/users/:userId/friends/:friendId
+
+- DELETE to remove a friend from a user's friend list
+
+
 
 - `Thought` CRUD Functionality
   - x
@@ -87,6 +143,23 @@ Controller, and View for a complete user experience.
   - can add or remove `friends`.
   - `User` can post or delete a `Thought`.
   - `User` can post or delete a `Reaction` as a response within a `Thought`.
+
+
+
+
+**/api/thoughts**
+
+- GET to get all thoughts
+- GET to get a single thought by its _id
+- POST to create a new thought
+    - (__Reminder: Don't forget to push the created thought's _id to the associated user's thoughts array field__)
+    - Example: ```{ "thoughtText": "What if...", "username": "ErikPlachta", "userId": "5edff358a0fcb779aa7b118b"}```
+- PUT to update a thought by its _id
+- DELETE to remove a thought by its _id
+- **/api/thoughts/:thoughtId/reactions**
+    - POST to create a reaction stored in a single thought's reactions array field
+    - DELETE to pull and remove a reaction by the reaction's reactionId value
+
 
 ---
 
