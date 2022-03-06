@@ -27,14 +27,14 @@ const thoughtController = {
             
             User.findOneAndUpdate(
                 {   _id: body.userId                        },
-                {   $addToSet: { thoughts: body.userId }    },
+                {   $addToSet: { thoughts: allThoughtsData }    },
                 {   runValidators: true, new: true          }
             )
             .then(thoughtAddedResponse => {
                 //-- if no user associted, exit.
                 if (!thoughtAddedResponse) { console.log({"message":`ERROR: No User associated to ID: ${body.userId}`});};
             })
-                
+        
             res.json(allThoughtsData)
         })
         .catch(err => {console.log(err); res.sendStatus(400)});
