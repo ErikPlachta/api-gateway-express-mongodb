@@ -1,6 +1,7 @@
 const express = require('express');
-const {mongoose, sequelize, db} = require('./config/connection');
-const hbs = require ('./config/handlebars');
+// const {mongoose, sequelize, db} = require('./config/connection');
+const { mongoose } = require('./config/connection');
+// const hbs = require ('./config/handlebars');
 const routes = require('./routes');
 
 const app = express();
@@ -23,3 +24,10 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening on http://127.0.0.1:${PORT}`));
 });
+
+// Use this to log mongo queries being executed!
+mongoose.set('debug', true);
+
+app.use(require('./routes'));
+
+app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));

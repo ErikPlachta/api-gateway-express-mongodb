@@ -26,11 +26,12 @@ I've built a social network platform with a fully-functional API Gateway.
   - [Table of Contents](#table-of-contents)
   - [Getting Setup](#getting-setup)
     - [Headless | MongoDB & Express](#headless--mongodb--express)
-      - [Requirements](#requirements)
+      - [Requirements & Getting Setup](#requirements--getting-setup)
   - [API Reference Guide](#api-reference-guide)
     - [**`User`**](#user)
       - [**POST** - Create New `User`](#post---create-new-user)
     - [**`User.friends`**](#userfriends)
+  - [Milestone Goals](#milestone-goals)
   - [Node Package Dependencies](#node-package-dependencies)
   - [Repo Stats](#repo-stats)
   - [Contributors](#contributors)
@@ -51,7 +52,7 @@ The headless version of the APP is a Model and Controller from the MVC model. It
 meant to server as an API-Gateway to an already existing View.
 
 <!-- #### Requirements - Getting Set Up for Headless -->
-#### Requirements
+#### Requirements & Getting Setup
 
 - [MongoDB](mongodb.com/try/download/community) is fully insatlled and setup
   > [See guide here for help](https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb)
@@ -60,6 +61,8 @@ meant to server as an API-Gateway to an already existing View.
 - [Download the Repo](https://github.com/ErikPlachta/api-gateway-express-mongodb/archive/refs/heads/main.zip)
 - Unzip and Open with your IDE of choice
 - Install Node Packages with `npm i`
+- Run with `npm start`
+- Open your API
 
 <!-- ### B. Full-Stack | MongoDB, MySQL, Express, Handlebars
   
@@ -135,8 +138,6 @@ Controller, and View for a complete user experience.
 
 - DELETE to remove a friend from a user's friend list
 
-
-
 - `Thought` CRUD Functionality
   - x
 - `Reaction` CRUD Functionality
@@ -145,24 +146,27 @@ Controller, and View for a complete user experience.
   - `User` can post or delete a `Thought`.
   - `User` can post or delete a `Reaction` as a response within a `Thought`.
 
-
-
-
 **/api/thoughts**
 
 - GET to get all thoughts
 - GET to get a single thought by its _id
 - POST to create a new thought
-    - (__Reminder: Don't forget to push the created thought's _id to the associated user's thoughts array field__)
-    - Example: ```{ "thoughtText": "What if...", "username": "ErikPlachta", "userId": "5edff358a0fcb779aa7b118b"}```
+  - (__Reminder: Don't forget to push the created thought's _id to the associated user's thoughts array field__)
+  - Example: ```{ "thoughtText": "What if...", "username": "ErikPlachta", "userId": "5edff358a0fcb779aa7b118b"}```
 - PUT to update a thought by its _id
 - DELETE to remove a thought by its _id
-- **/api/thoughts/:thoughtId/reactions**
-    - POST to create a reaction stored in a single thought's reactions array field
-    - DELETE to pull and remove a reaction by the reaction's reactionId value
 
+**/api/thoughts/:thoughtId/reactions**
+
+- POST to create a reaction stored in a single thought's reactions array field
+- DELETE to pull and remove a reaction by the reaction's reactionId value
 
 ---
+
+## Milestone Goals
+
+- [x] **Headless Functionality**    - Completed 03/05/2022
+- [ ] **Full-Stack functionality**  -
 
 ## Node Package Dependencies
 
