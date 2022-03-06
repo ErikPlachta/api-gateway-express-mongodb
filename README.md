@@ -1,30 +1,27 @@
-# API Gateway for a Social Platform - Concept App
+# API Gateway for a Social Work Platform - Concept App
 
 I built this App because I wanted to learn more about using a NoSQL Database in
 collaboration with an Express server running on Node. I used MongoDB as my
 Database, and Mongoose as my ODM.
 
-## Concept
-
-The
-
 ## Index
 
-- [API Gateway for a Social Platform - Concept App](#api-gateway-for-a-social-platform---concept-app)
-  - [Concept](#concept)
+- [API Gateway for a Social Work Platform - Concept App](#api-gateway-for-a-social-work-platform---concept-app)
   - [Index](#index)
-  - [Using the App](#using-the-app)
+  - [Getting Setup](#getting-setup)
     - [A. Headless   | MongoDB & Express](#a-headless----mongodb--express)
       - [Requirements - Getting Set Up for Headless](#requirements---getting-set-up-for-headless)
     - [B. Full-Stack | MongoDB, MySQL, Express, Handlebars](#b-full-stack--mongodb-mysql-express-handlebars)
       - [Requirements - Getting Setup for Full-Stack](#requirements---getting-setup-for-full-stack)
+  - [Using the API](#using-the-api)
+    - [`User` CRUD Functionality](#user-crud-functionality)
   - [Node Package Dependencies](#node-package-dependencies)
   - [Repo Stats](#repo-stats)
   - [Contributors](#contributors)
     - [Erik Plachta](#erik-plachta)
   - [Questions?](#questions)
 
-## Using the App
+## Getting Setup
 
 The APP can either be ran Headless as an API Gateway or as a complete Full-Stack.
 
@@ -68,6 +65,31 @@ Controller, and View for a complete user experience.
 
 ---
 
+## Using the API
+
+### `User` CRUD Functionality
+
+- **GET** - ALL `User` accounts
+  > URL 👉🏼 `http://localhost/api/users/`
+- **GET** - Single `User` account by `id`
+  > `http://localhost/api/users/:id`
+- **POST** - New `User`
+  > `http://localhost/api/users/`
+- **PUT** - Change `User` values
+  > `http://localhost/api/users/`
+- **DELETE** - Remove `User`
+  > `http://localhost/api/users/:id`
+
+- `Thought` CRUD Functionality
+  - x
+- `Reaction` CRUD Functionality
+  - x
+  - can add or remove `friends`.
+  - `User` can post or delete a `Thought`.
+  - `User` can post or delete a `Reaction` as a response within a `Thought`.
+
+---
+
 ## Node Package Dependencies
 
 - **Utility**
@@ -94,10 +116,7 @@ Controller, and View for a complete user experience.
 [![GitHub top Language](https://img.shields.io/github/languages/top/ErikPlachta/api-gateway-express-mongodb)](https://github.com/ErikPlachta/api-gateway-express-mongodb)
 
 [![GitHub issues](https://img.shields.io/github/issues/ErikPlachta/api-gateway-express-mongodb)](https://github.com/ErikPlachta/api-gateway-express-mongodb/issues)
-
 ![GitHub last commit](https://img.shields.io/github/last-commit/erikplachta/api-gateway-express-mongodb)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/w/erikplachta/api-gateway-express-mongodb)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/erikplachta/api-gateway-express-mongodb)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/erikplachta/api-gateway-express-mongodb)
 
 ## Contributors
