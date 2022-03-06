@@ -22,9 +22,6 @@ const {
     .get(getUserById)
     .put(updateUserById)
     .delete(deleteUserById);
-  
-  module.exports = router;
-  
 
 //------------------------------------------------------------------------------
 //-- Exports
