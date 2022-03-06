@@ -14,8 +14,11 @@ The
   - [Concept](#concept)
   - [Index](#index)
   - [Using the App](#using-the-app)
-  - [Requirements](#requirements)
-  - [Dependencies](#dependencies)
+    - [A. Headless   | MongoDB & Express](#a-headless----mongodb--express)
+      - [Requirements - Getting Set Up for Headless](#requirements---getting-set-up-for-headless)
+    - [B. Full-Stack | MongoDB, MySQL, Express, Handlebars](#b-full-stack--mongodb-mysql-express-handlebars)
+      - [Requirements - Getting Setup for Full-Stack](#requirements---getting-setup-for-full-stack)
+  - [Node Package Dependencies](#node-package-dependencies)
   - [Repo Stats](#repo-stats)
   - [Contributors](#contributors)
     - [Erik Plachta](#erik-plachta)
@@ -23,39 +26,65 @@ The
 
 ## Using the App
 
-- x
+The APP can either be ran Headless as an API Gateway or as a complete Full-Stack.
 
-## Requirements
+### A. Headless   | MongoDB & Express
 
-- x
+The headless version of the APP is a Model and Controller from the MVC model. It's
+meant to server as an API-Gateway to an already existing View.
 
-## Dependencies
+#### Requirements - Getting Set Up for Headless
+
+- [MongoDB](mongodb.com/try/download/community) is fully insatlled and setup
+  > [See guide here for help](https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb)
+- [Node.js](https://nodejs.dev/download) is fully instealled and setup
+  > [See guide here for help](https://coding-boot-camp.github.io/full-stack/nodejs/how-to-install-nodejs)
+- [Download the Repo](https://github.com/ErikPlachta/api-gateway-express-mongodb/archive/refs/heads/main.zip)
+- Unzip and Open with your IDE of choice
+- Install Node Packages with `npm i`
+
+### B. Full-Stack | MongoDB, MySQL, Express, Handlebars
+  
+The headless version of the APP is a complete MVC stack. It includes a Model,
+Controller, and View for a complete user experience.
+
+#### Requirements - Getting Setup for Full-Stack
+
+- [MongoDB](mongodb.com/try/download/community) is fully insatlled and setup
+  > [See guide here for help](https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb)
+- [Node.js](https://nodejs.dev/download) is fully instealled and setup
+  > [See guide here for help](https://coding-boot-camp.github.io/full-stack/nodejs/how-to-install-nodejs)
+- [MySQL](https://dev.mysql.com/downloads/mysql/) is fully insatlled and setup
+  > [See guide here for help](https://coding-boot-camp.github.io/full-stack/mysql/mysql-installation-guide)
+- [Download the Repo](https://github.com/ErikPlachta/api-gateway-express-mongodb/archive/refs/heads/main.zip)
+- Unzip and Open with your IDE of choice
+- Install Node Packages with `npm i`
+- Update your .env file
+  - `RENAME.env` to `.env`
+  - Add your MySQL login details
+    - Add `DB_USER`
+    - Add `DB_PASSWORD`
+  - Crate your own `SECRET`
+
+---
+
+## Node Package Dependencies
 
 - **Utility**
-  - [dotenv](#dotenv)
-    - Allow environment variables
-  - [moment](#moment)
-    - Used by helper functions for date-time manipulation
+  - [dotenv](https://www.npmjs.com/package/dotenv) - Used for local enviornment variables.
+  - [moment]([#moment](https://www.npmjs.com/package/moment)) - Used by full-stack front helper functions for date-time manipulation.
 - **Security**
-  - [express-session](#express-session)
-    - Allow secure session cookies with...
-  - [connect-session-sequelize](#connect-session-sequelize)
-    - Allow secure session cookies with...
-  - [bcrypt](#bcrypt)
-  - Encryption user creds
-  <!-- - [Google API](https://www.npmjs.com/package/googleapis)  
-    - User authentication -->
-- **Server**
-  - [express](#express)
-    - Running the server on Heroku
-  - [express-handlebars](#express-handlebars)
-    - Controller managing the front-end
-- Database
-  - [Mongoose](https://www.npmjs.com/package/mongoose)
-  - [mysql2](#mysql2)
-    - MySQL / JawsDB
-  - [sequelize](#sequelize)
-    - ORM for MySQL / JawsDB
+  - [express-session](https://www.npmjs.com/package/express-session) - Used to allow a secure client sessions via the web browsers cookies/local caching.
+  - [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) - Used to create a session between user and the Database.
+  - [bcrypt](https://www.npmjs.com/package/bcrypt) - Used to hash user passwords.
+- **Controller**
+  - [express](https://www.npmjs.com/package/express) - The controller managing all communication between view and the database.
+- **View**
+  - [express-handlebars](https://www.npmjs.com/package/express-handlebars) - The View engine running the users for full-stack app.
+- **Model**
+  - [Mongoose](https://www.npmjs.com/package/mongoose) - A DRM for the MongoDB API database.
+  - [mysql2](#mysql2) - A DRM for MySQL/JawsDB full-stack frontend User database.
+  - [sequelize](https://www.npmjs.com/package/sequelize) - ORM for MySQL/JawsDB full-stack frontend user database.
 
 ## Repo Stats
 
