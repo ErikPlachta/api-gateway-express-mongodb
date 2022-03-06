@@ -13,11 +13,7 @@ const thoughtController = {
     getThoughtById( { params }, res ) {
         Thought.findOne({ _id: params.id})
         .populate({
-            path: 'thoughts',
-            select: '-__v'
-        })
-        .populate({
-            path: 'friends',
+            path: 'reactions',
             select: '-__v'
         })
         .then(allThoughtsData => res.json(allThoughtsData))
@@ -41,11 +37,11 @@ const thoughtController = {
         .then(allThoughtsData => res.json(allThoughtsData))
         .catch(err => {console.log(err); res.sendStatus(400)});
     },
-    // /api/thoughts/:thoughtId/reactions/:reactionId
+    // /api/thoughts/:thoughtId/reactions
     createReaction({ params, body }, res) {
         Thought.findOneAndUpdate(
             {   _id: params.thoughtId                 },
-            {   $addToSet: { reactions: body._id }    },
+            {   $push: { reactions: body }    },
             {   runValidators: true, new: true        }
         )
             .then(reactionAddedResponse => {
@@ -58,9 +54,9 @@ const thoughtController = {
     // /api/thoughts/:thoughtId/reactions/:reactionId
     deleteReactionById({ params }, res) {
         Thought.findOneAndUpdate(
-            {   _id: params.userId                           },
-            {   $pull: { reactions: params.reactionId }          },
-            {   runValidators: true, new: true               }
+            {   _id: params.thoughtId                                   },
+            {   $pull: { reactions: { reactionId: params.reactionId } } },
+            {   runValidators: true, new: true                          }
         )
             .then(reactionAddedResponse => {
                 //-- if no user associted, exit.

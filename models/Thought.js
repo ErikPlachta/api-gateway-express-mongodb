@@ -1,11 +1,11 @@
 //-- IMPORTS
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 
 //-- SCHEMAS
 
-const ReactionSceham = new Schema(
+const ReactionSchema = new Schema(
     //-- A response to a thought created by a user
     {
         reactionId: {
@@ -29,7 +29,10 @@ const ReactionSceham = new Schema(
             get: date_creted_value => dateFormat(date_creted_value)
         },
     },
-    { toJSON: { getters: true } }
+    {
+        toJSON: { getters: true },
+        id: false 
+    }
 );
 
 
@@ -55,17 +58,17 @@ const ThoughtSchema = new Schema(
             get: date_creted_value => dateFormat(date_creted_value)
         },
         //-- reactions to thought
-        reactions: [ReactionSceham]
+        reactions: [ReactionSchema]
     },
     { 
-        toJSON: { virtuals: true, getters: true } 
+        toJSON: { virtuals: true, getters: true },
+        id: false
     },
 );
 
 
 //-- virtual getting total comments
 ThoughtSchema.virtual('reactionCount').get(function() {
-
     return this.reactions.length;
   });
 
