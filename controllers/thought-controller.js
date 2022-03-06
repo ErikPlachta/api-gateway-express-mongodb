@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //-- Imports
-const { Thought } = require('../models');
+const { Thought, User } = require('../models');
 
 const thoughtController = {
     // /api/thoughts/
@@ -22,7 +22,21 @@ const thoughtController = {
     // /api/thoughts/
     createThought({ body }, res) {
         Thought.create(body)
-        .then(allThoughtsData => res.json(allThoughtsData))
+        //--Attach thought to user
+        .then(allThoughtsData => {
+            
+            User.findOneAndUpdate(
+                {   _id: body.userId                        },
+                {   $addToSet: { thoughts: body.userId }    },
+                {   runValidators: true, new: true          }
+            )
+            .then(thoughtAddedResponse => {
+                //-- if no user associted, exit.
+                if (!thoughtAddedResponse) { console.log({"message":`ERROR: No User associated to ID: ${body.userId}`});};
+            })
+                
+            res.json(allThoughtsData)
+        })
         .catch(err => {console.log(err); res.sendStatus(400)});
     },
     // /api/thoughts/:id
