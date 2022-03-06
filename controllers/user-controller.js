@@ -3,7 +3,6 @@
 const { User } = require('../models');
 
 const userController = {
-
     // /api/users/
     getAllUsers(req, res) {
         User.find({})
@@ -44,7 +43,6 @@ const userController = {
     },
     // /api/users/:userId/friend/:friendId
     createFriendById({ params }, res) {
-        console.log("creating friend")
         User.findOneAndUpdate(
             {   _id: params.userId                         },
             {   $addToSet: { friends: params.friendId }    },
@@ -52,14 +50,13 @@ const userController = {
         )
             .then(friendAddedResponse => {
                 //-- if no user associted, exit.
-                if (!friendAddedResponse) {return res.status(400).json({"message":`ERROR: No User associated to ID: ${req.params.userId}`});};
+                if (!friendAddedResponse) {return res.status(400).json({"message":`ERROR: No User associated to ID: ${params.userId}`});};
                 res.status(200).json(friendAddedResponse)
             })
             .catch(err => {console.log(err); res.sendStatus(400)});
     },
     // /api/users/:userId/friend/:friendId
     deleteFriendById({ params }, res) {
-        
         User.findOneAndUpdate(
             {   _id: params.userId                           },
             {   $pull: { friends: params.friendId }          },
@@ -67,7 +64,7 @@ const userController = {
         )
             .then(friendAddedResponse => {
                 //-- if no user associted, exit.
-                if (!friendAddedResponse) {return res.status(400).json({"message":`ERROR: No User associated to ID: ${req.params.userId}`});};
+                if (!friendAddedResponse) {return res.status(400).json({"message":`ERROR: No User associated to ID: ${params.userId}`});};
                 
                 res.json(friendAddedResponse);
             })
