@@ -13,15 +13,15 @@ const {
   // /api/pizzas
   router
     .route('/')
-    .get(getAllPizza)
-    .post(createPizza);
+    .get(getAllUsers)
+    .post(createUser)
   
   // /api/pizzas/:id
   router
     .route('/:id')
-    .get(getPizzaById)
-    .put(updatePizza)
-    .delete(deletePizza);
+    .get(getUserById)
+    .put(updateUserById)
+    .delete(deleteUserById);
   
   module.exports = router;
   

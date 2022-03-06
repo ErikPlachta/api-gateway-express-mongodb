@@ -7,31 +7,49 @@ const userController = {
     getAllUsers(req, res) {
         User.find({})
         .then(allUsersData => res.json(allUsersData))
-        .catch(err => json(err));
+        .populate(
+            {
+                path: 'thoughts',
+                select: '-__v'
+            },
+            {
+                path: 'friends',
+                select: '-__v'
+            }
+        )
+        .catch(err => res.sendStatus(400).json(err));
     },
-    getUserById(req, res) {
-        User.find({})
+    getUserById( { params }, res ) {
+        User.findOne({ __id: params.id })
+        .populate(
+            {
+                path: 'thoughts',
+                select: '-__v'
+            },
+            {
+                path: 'friends',
+                select: '-__v'
+            }
+        )
         .then(allUsersData => res.json(allUsersData))
-        .catch(err => json(err));
+        .catch(err => res.sendStatus(400).json(err));
     },
-    createUser(req, res) {
-        User.find({})
+    createUser({ body }, res) {
+        User.create(body)
         .then(allUsersData => res.json(allUsersData))
-        .catch(err => json(err));
+        .catch(err => res.sendStatus(400).json(err));
     },
     updateUserById(req, res) {
         User.find({})
         .then(allUsersData => res.json(allUsersData))
-        .catch(err => json(err));
+        .catch(err => res.sendStatus(400).json(err));
     },
     deleteUserById(req, res) {
         User.find({})
         .then(allUsersData => res.json(allUsersData))
-        .catch(err => json(err));
+        .catch(err => res.sendStatus(400).json(err));
     },
 };
-
-
 
 //------------------------------------------------------------------------------
 //-- Exports
