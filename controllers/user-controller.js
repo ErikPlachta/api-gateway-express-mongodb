@@ -27,8 +27,8 @@ const userController = {
         .then(allUsersData => res.json(allUsersData))
         .catch(err => {console.log(err); res.sendStatus(400)});
     },
-    updateUserById(req, res) {
-        User.find({})
+    updateUserById({ params, body }, res) {
+        User.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
         .then(allUsersData => res.json(allUsersData))
         .catch(err => {console.log(err); res.sendStatus(400)});
     },
