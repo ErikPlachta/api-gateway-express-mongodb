@@ -32,8 +32,8 @@ const userController = {
         .then(allUsersData => res.json(allUsersData))
         .catch(err => {console.log(err); res.sendStatus(400)});
     },
-    deleteUserById(req, res) {
-        User.find({})
+    deleteUserById({ params }, res) {
+        User.findOneAndDelete({ _id: params.id })
         .then(allUsersData => res.json(allUsersData))
         .catch(err => {console.log(err); res.sendStatus(400)});
     },
