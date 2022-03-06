@@ -25,10 +25,8 @@ I've built a social network platform with a fully-functional API Gateway.
   - [The Concept](#the-concept)
   - [Table of Contents](#table-of-contents)
   - [Getting Setup](#getting-setup)
-    - [A. Headless   | MongoDB & Express](#a-headless----mongodb--express)
-      - [Requirements - Getting Set Up for Headless](#requirements---getting-set-up-for-headless)
-    - [B. Full-Stack | MongoDB, MySQL, Express, Handlebars](#b-full-stack--mongodb-mysql-express-handlebars)
-      - [Requirements - Getting Setup for Full-Stack](#requirements---getting-setup-for-full-stack)
+    - [Headless | MongoDB & Express](#headless--mongodb--express)
+      - [Requirements](#requirements)
   - [API Reference Guide](#api-reference-guide)
     - [**`User`**](#user)
       - [**POST** - Create New `User`](#post---create-new-user)
@@ -43,14 +41,17 @@ I've built a social network platform with a fully-functional API Gateway.
 
 ## Getting Setup
 
-The APP can either be ran Headless as an API Gateway or as a complete Full-Stack.
+This APP is designed to be a headless API Gateway. You'll need to use 
 
-### A. Headless   | MongoDB & Express
+<!-- The APP can either be ran Headless as an API Gateway or as a complete Full-Stack. -->
+
+### Headless | MongoDB & Express
 
 The headless version of the APP is a Model and Controller from the MVC model. It's
 meant to server as an API-Gateway to an already existing View.
 
-#### Requirements - Getting Set Up for Headless
+<!-- #### Requirements - Getting Set Up for Headless -->
+#### Requirements
 
 - [MongoDB](mongodb.com/try/download/community) is fully insatlled and setup
   > [See guide here for help](https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb)
@@ -60,7 +61,7 @@ meant to server as an API-Gateway to an already existing View.
 - Unzip and Open with your IDE of choice
 - Install Node Packages with `npm i`
 
-### B. Full-Stack | MongoDB, MySQL, Express, Handlebars
+<!-- ### B. Full-Stack | MongoDB, MySQL, Express, Handlebars
   
 The headless version of the APP is a complete MVC stack. It includes a Model,
 Controller, and View for a complete user experience.
@@ -81,7 +82,7 @@ Controller, and View for a complete user experience.
   - Add your MySQL login details
     - Add `DB_USER`
     - Add `DB_PASSWORD`
-  - Crate your own `SECRET`
+  - Crate your own `SECRET` -->
 
 ---
 
@@ -165,21 +166,21 @@ Controller, and View for a complete user experience.
 
 ## Node Package Dependencies
 
-- **Utility**
-  - [dotenv](https://www.npmjs.com/package/dotenv) - Used for local enviornment variables.
-  - [moment]([#moment](https://www.npmjs.com/package/moment)) - Used by full-stack front helper functions for date-time manipulation.
-- **Security**
+<!-- - **Utility**
+  - [dotenv](https://www.npmjs.com/package/dotenv) - Used for local enviornment variables. -->
+  <!-- - [moment]([#moment](https://www.npmjs.com/package/moment)) - Used by full-stack front helper functions for date-time manipulation. -->
+<!-- - **Security**
   - [express-session](https://www.npmjs.com/package/express-session) - Used to allow a secure client sessions via the web browsers cookies/local caching.
   - [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) - Used to create a session between user and the Database.
-  - [bcrypt](https://www.npmjs.com/package/bcrypt) - Used to hash user passwords.
+  - [bcrypt](https://www.npmjs.com/package/bcrypt) - Used to hash user passwords. -->
 - **Controller**
   - [express](https://www.npmjs.com/package/express) - The controller managing all communication between view and the database.
-- **View**
-  - [express-handlebars](https://www.npmjs.com/package/express-handlebars) - The View engine running the users for full-stack app.
+<!-- - **View**
+  - [express-handlebars](https://www.npmjs.com/package/express-handlebars) - The View engine running the users for full-stack app. -->
 - **Model**
   - [Mongoose](https://www.npmjs.com/package/mongoose) - A DRM for the MongoDB API database.
-  - [mysql2](#mysql2) - A DRM for MySQL/JawsDB full-stack frontend User database.
-  - [sequelize](https://www.npmjs.com/package/sequelize) - ORM for MySQL/JawsDB full-stack frontend user database.
+  <!-- - [mysql2](#mysql2) - A DRM for MySQL/JawsDB full-stack frontend User database.
+  - [sequelize](https://www.npmjs.com/package/sequelize) - ORM for MySQL/JawsDB full-stack frontend user database. -->
 
 ## Repo Stats
 
