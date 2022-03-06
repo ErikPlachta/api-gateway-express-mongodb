@@ -37,6 +37,24 @@ const userController = {
         .then(allUsersData => res.json(allUsersData))
         .catch(err => {console.log(err); res.sendStatus(400)});
     },
+    createFriendById({ body }, res) {
+        User.findOneAndUpdate(
+            {   _id: req.params.userId              },
+            {   $addToSet: { friends: req.body }    },
+            {   runValidators: true, new: true      }
+        )
+            .then(friendAddedResponse => {
+                //-- if no user associted, exit.
+                if (!friendAddedResponse) {return res.status(400).json({"message":`ERROR: No User associated to ID: ${req.params.userId}`});};
+                res.status(200).json(friendAddedResponse)
+            })
+            .catch(err => {console.log(err); res.sendStatus(400)});
+    },
+    deleteFriendById({ params }, res) {
+        User.findOneAndDelete({ _id: params.id })
+        .then(allUsersData => res.json(allUsersData))
+        .catch(err => {console.log(err); res.sendStatus(400)});
+    },
 };
 
 //------------------------------------------------------------------------------
