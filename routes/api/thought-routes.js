@@ -1,9 +1,37 @@
 //------------------------------------------------------------------------------
 //-- Imports
 const router = require('express').Router();
-const { Thought } = require('../../models');
-const withAuth = require('../../utils/auth.js')
 
+const {
+    getAllThoughts,
+    createThought,
+    getThoughtById,
+    updateThoughtById,
+    deleteThoughtById,
+    createReaction,
+    deleteReactionById
+} = require('../../controllers/thought-controller')
+
+
+// /api/thoughts/
+router.route('/')
+    .get(getAllThoughts)
+    .post(createThought)
+    
+// /api/thoughts/:id
+router.route('/:id')
+    .get(getThoughtById)
+    .put(updateThoughtById)
+    .get(deleteThoughtById)
+
+
+    // /api/thoughts/:thoughtId/reactions
+router.route('/:thoughtId/reactions')
+    .post(createReaction)
+
+// /api/thoughts/:thoughtId/reactions
+router.route('/:thoughtId/reactions/:reactionId')
+    .delete(deleteReactionById)
 
 //------------------------------------------------------------------------------
 //-- Exports
