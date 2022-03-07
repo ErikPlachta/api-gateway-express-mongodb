@@ -113,7 +113,9 @@ free to reaech out to me on [Twitter](https://www.twitter.com/erikplachta/) or
 3. [Download the Repo](https://github.com/ErikPlachta/api-gateway-express-mongodb/archive/refs/heads/main.zip)
 4. Unzip and Open with your IDE of choice
 5. Install Node Packages with `npm i`
+   > > <img src="./public/images/npm-i.gif" width="600px">  
 6. Run with `npm start`
+   > <img src="./public/images/npm-start.gif" width="600px"> 
 7. Start making API calls
     > *This APP is designed to be a headless RESTful API gateway. You'll need to use a tool like [Insomnia](https://insomnia.rest/download) to use it.*
 
