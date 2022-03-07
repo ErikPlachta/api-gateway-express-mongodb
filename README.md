@@ -31,26 +31,26 @@ of unstructured data.
   - [Contact Erik Plachta](#contact-erik-plachta)
   - [Getting Setup](#getting-setup)
 - [API Reference](#api-reference)
-  - [**`/api/users`**](#apiusers)
+  - [Route: **`/api/users`**](#route-apiusers)
     - [`POST` - Create a New `User` Entry](#post---create-a-new-user-entry)
     - [`GET` - ALL `User` Entries](#get---all-user-entries)
-  - [**`/api/users/:id`**](#apiusersid)
+  - [Route: **`/api/users/:id`**](#route-apiusersid)
     - [`GET` - Single `User` Entry By `_id`](#get---single-user-entry-by-_id)
     - [`PUT` - Change `User` Value(s) by `_id`](#put---change-user-values-by-_id)
     - [`DELETE` - Remove a `User` Entry](#delete---remove-a-user-entry)
-  - [**`/api/users/:userId/friends/:friendId`**](#apiusersuseridfriendsfriendid)
+  - [Route: **`/api/users/:userId/friends/:friendId`**](#route-apiusersuseridfriendsfriendid)
     - [`POST` - Create 1-way Associtation To a `User` in `User`.`friends[]`](#post---create-1-way-associtation-to-a-user-in-userfriends)
     - [`DELETE` - Remove Existing `friends` Association](#delete---remove-existing-friends-association)
-  - [**`/api/thoughts/`**](#apithoughts)
+  - [Route: **`/api/thoughts/`**](#route-apithoughts)
     - [`POST` - Create a New `Thought` Entry](#post---create-a-new-thought-entry)
     - [`GET` - ALL `Thought` Entries](#get---all-thought-entries)
-  - [**`/api/thoughts/:id`**](#apithoughtsid)
+  - [Route: **`/api/thoughts/:id`**](#route-apithoughtsid)
     - [`GET` - Single `Thought` Entry by `_id`](#get---single-thought-entry-by-_id)
     - [`PUT` - Change `Thought` Value(s) by `_id`](#put---change-thought-values-by-_id)
     - [`DELETE` - Remove a `Thought` Entry by `_id`](#delete---remove-a-thought-entry-by-_id)
-  - [**`/api/thoughts/<thought-id-here>/reactions`**](#apithoughtsthought-id-herereactions)
+  - [Route: **`/api/thoughts/<thought-id-here>/reactions`**](#route-apithoughtsthought-id-herereactions)
     - [`POST` - Create a New `Reaction` Entry on a `Thought`](#post---create-a-new-reaction-entry-on-a-thought)
-  - [**`/api/thoughts/<thought-id-here>/reactions/<reaction-id-here>`**](#apithoughtsthought-id-herereactionsreaction-id-here)
+  - [Route: **`/api/thoughts/<thought-id-here>/reactions/<reaction-id-here>`**](#route-apithoughtsthought-id-herereactionsreaction-id-here)
     - [`DELETE` - Remove a `Reaction` Entry from a `Thought`](#delete---remove-a-reaction-entry-from-a-thought)
 - [Database Structure](#database-structure)
   - [`UserSchema`](#userschema)
@@ -145,9 +145,7 @@ Controller, and View for a complete user experience.
 
 # API Reference
 
-## **`/api/users`**
-
----
+## Route: **`/api/users`**
 
 ### `POST` - Create a New `User` Entry
 
@@ -192,9 +190,7 @@ and `friends[]` fields will just return the related Schema object `_id`s.
 
 ---
 
-## **`/api/users/:id`**
-
----
+## Route: **`/api/users/:id`**
 
 ### `GET` - Single `User` Entry By `_id`
 
@@ -250,9 +246,7 @@ the user will be deleted from the database.
 
 ---
 
-## **`/api/users/:userId/friends/:friendId`**
-
----
+## Route: **`/api/users/:userId/friends/:friendId`**
 
 ### `POST` - Create 1-way Associtation To a `User` in `User`.`friends[]`
 
@@ -286,9 +280,7 @@ url parameters.
 
 ---
 
-## **`/api/thoughts/`**
-
----
+## Route: **`/api/thoughts/`**
 
 ### `POST` - Create a New `Thought` Entry
 
@@ -313,7 +305,6 @@ Make a POST request to create a new `Thought` with a JSON body that includes a
 - **Example**
   > <img src="./public/images/post-api-thoughts.gif" width="600">
 
-
 ---
 
 ### `GET` - ALL `Thought` Entries
@@ -333,9 +324,7 @@ Make a GET request to receive ALL `Thought` entries within the database.
 
 ---
 
-## **`/api/thoughts/:id`**
-
----
+## Route: **`/api/thoughts/:id`**
 
 ### `GET` - Single `Thought` Entry by `_id`
 
@@ -390,9 +379,7 @@ Make a `DELETE` request to receive with a specific `Thought`.`_id` paramater.
 
 ---
 
-## **`/api/thoughts/<thought-id-here>/reactions`**
-
----
+## Route: **`/api/thoughts/<thought-id-here>/reactions`**
 
 ### `POST` - Create a New `Reaction` Entry on a `Thought`
 
@@ -419,7 +406,7 @@ existing `Thought`.`_id` as a pramater, and the reaction `BODY` as JSON.
 
 ---
 
-## **`/api/thoughts/<thought-id-here>/reactions/<reaction-id-here>`**
+## Route: **`/api/thoughts/<thought-id-here>/reactions/<reaction-id-here>`**
 
 ### `DELETE` - Remove a `Reaction` Entry from a `Thought`
 
