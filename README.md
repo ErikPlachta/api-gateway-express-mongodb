@@ -93,7 +93,7 @@ of unstructured data.
 ## Contact [Erik Plachta](https://github.com/ErikPlachta)
 
 If you want to get in touch talk dev, collaborate, help improve my work, feel
-free to reaech out to me on [Twitter](https://www.twitter.com/erikplachta/) or
+free to reach out to me on [Twitter](https://www.twitter.com/erikplachta/) or
 [LinkedIn](https://www.linkedin.com/in/erikplachta/).
 
 ## Getting Setup
