@@ -13,10 +13,12 @@ connects to a NoSQL Database that is fast, flexible, and allows for large volume
 of unstructured data.
 
 - All activity within the platform is tied to a unique `User`.
-- A `User` has full crud-functionality.
-- A `User` post or delete friends, which must be another `User` in the platform.
-- A `User` can post or delete `Thoughts`, which are posts.
-- A `User` can post or delete a `Reactions` to `Users` `Thoughts`, are resposnes to a thought.
+- A `User` can have friends.
+  - Can `post` or `delete`.
+  - The added friend `User.id` will appear in `User.friends[]` on the `User` adding a friend only.
+- A `User` can `post` or `delete` a `Thought`.
+  - A `User` specific `Thought.id` will appear within `User.thoughts[]`.
+- A `User` can `post` or `delete` a `Reaction` to a `User.Thought`.
 
 ---
 
@@ -35,11 +37,11 @@ of unstructured data.
     - [`POST` - Create a New `User` Entry](#post---create-a-new-user-entry)
     - [`GET` - ALL `User` Entries](#get---all-user-entries)
   - [Route: **`/api/users/:id`**](#route-apiusersid)
-    - [`GET` - Single `User` Entry By `_id`](#get---single-user-entry-by-_id)
+    - [`GET` - Single `User` Database Entry By `_id`](#get---single-user-database-entry-by-_id)
     - [`PUT` - Change `User` Value(s) by `_id`](#put---change-user-values-by-_id)
-    - [`DELETE` - Remove a `User` Entry](#delete---remove-a-user-entry)
+    - [`DELETE` - Remove a `User` from Database](#delete---remove-a-user-from-database)
   - [Route: **`/api/users/:userId/friends/:friendId`**](#route-apiusersuseridfriendsfriendid)
-    - [`POST` - Create 1-way Associtation To a `User` in `User`.`friends[]`](#post---create-1-way-associtation-to-a-user-in-userfriends)
+    - [`POST` - Create One-Way Association To a `User` in `User.friends[]`](#post---create-one-way-association-to-a-user-in-userfriends)
     - [`DELETE` - Remove Existing `friends` Association](#delete---remove-existing-friends-association)
   - [Route: **`/api/thoughts/`**](#route-apithoughts)
     - [`POST` - Create a New `Thought` Entry](#post---create-a-new-thought-entry)
@@ -49,7 +51,7 @@ of unstructured data.
     - [`PUT` - Change `Thought` Value(s) by `_id`](#put---change-thought-values-by-_id)
     - [`DELETE` - Remove a `Thought` Entry by `_id`](#delete---remove-a-thought-entry-by-_id)
   - [Route: **`/api/thoughts/<thought-id-here>/reactions`**](#route-apithoughtsthought-id-herereactions)
-    - [`POST` - Create a New `Reaction` Entry on a `Thought`](#post---create-a-new-reaction-entry-on-a-thought)
+    - [`POST` - Create a New `Reaction` Database Entry Associated to a `Thought`](#post---create-a-new-reaction-database-entry-associated-to-a-thought)
   - [Route: **`/api/thoughts/<thought-id-here>/reactions/<reaction-id-here>`**](#route-apithoughtsthought-id-herereactionsreaction-id-here)
     - [`DELETE` - Remove a `Reaction` Entry from a `Thought`](#delete---remove-a-reaction-entry-from-a-thought)
 - [Database Structure](#database-structure)
@@ -68,12 +70,12 @@ of unstructured data.
   - [express-session](https://www.npmjs.com/package/express-session) - Used to allow a secure client sessions via the web browsers cookies/local caching.
   - [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) - Used to create a session between user and the Database.
   - [bcrypt](https://www.npmjs.com/package/bcrypt) - Used to hash user passwords. -->
-- [dotenv](https://www.npmjs.com/package/dotenv) - Used for local enviornment variables.
+- [dotenv](https://www.npmjs.com/package/dotenv) - Used for local environment variables.
 - [express](https://www.npmjs.com/package/express) - The controller managing all communication between view and the database.
 <!-- - **View**
   - [express-handlebars](https://www.npmjs.com/package/express-handlebars) - The View engine running the users for full-stack app. -->
 - [Mongoose](https://www.npmjs.com/package/mongoose) - A DRM for the MongoDB API database.
-- [Nodemon](https://www.npmjs.com/package/nodemon) - Using as a dev-dependcy to simplify development.
+- [Nodemon](https://www.npmjs.com/package/nodemon) - Using as a dev-dependency to restart Express server with changes to simplify development.
   <!-- - [mysql2](#mysql2) - A DRM for MySQL/JawsDB full-stack frontend User database.
   - [sequelize](https://www.npmjs.com/package/sequelize) - ORM for MySQL/JawsDB full-stack frontend user database. -->
 
@@ -103,19 +105,18 @@ free to reaech out to me on [Twitter](https://www.twitter.com/erikplachta/) or
 <!-- > It's meant to server as an API-Gateway to an already existing View. -->
 
 <!-- #### Requirements - Getting Set Up for Headless -->
-**Steps**
 
-1. [MongoDB](mongodb.com/try/download/community) is fully insatlled and setup
-  > [See guide here for help](https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb)
-2. [Node.js](https://nodejs.dev/download) is fully instealled and setup
-  > [See guide here for help](https://coding-boot-camp.github.io/full-stack/nodejs/how-to-install-nodejs)
-3. [Download the Repo](https://github.com/ErikPlachta/api-gateway-express-mongodb/archive/refs/heads/main.zip)
-4. Unzip and Open with your IDE of choice
-5. Install Node Packages with `npm i`
+1. [MongoDB](mongodb.com/try/download/community) is fully installed and setup.
+  > [See guide here for help](https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb).
+2. [Node.js](https://nodejs.dev/download) is fully installed and set up.
+  > [See guide here for help](https://coding-boot-camp.github.io/full-stack/nodejs/how-to-install-nodejs).
+3. [Download the Repo](https://github.com/ErikPlachta/api-gateway-express-mongodb/archive/refs/heads/main.zip).
+4. Unzip and Open with your IDE of choice.
+5. Install Node Packages with `npm i`.
    > > <img src="./public/images/npm-i.gif" width="600px">  
-6. Run with `npm start`
+6. Run with `npm start`.
    > <img src="./public/images/npm-start.gif" width="600px"> 
-7. Start making API calls
+7. Start making API calls.
     > *This APP is designed to be a headless RESTful API gateway. You'll need to use a tool like [Insomnia](https://insomnia.rest/download) to use it.*
 
 <!-- ### B. Full-Stack | MongoDB, MySQL, Express, Handlebars
@@ -192,7 +193,7 @@ and `friends[]` fields will just return the related Schema object `_id`s.
 
 ## Route: **`/api/users/:id`**
 
-### `GET` - Single `User` Entry By `_id`
+### `GET` - Single `User` Database Entry By `_id`
 
 Make a GET request for a specific `User` by `_id` to get a single `User` with
 populated `thoughts[]` and `friends[]` content.
@@ -208,11 +209,11 @@ populated `thoughts[]` and `friends[]` content.
 
 ### `PUT` - Change `User` Value(s) by `_id`
 
-Make a PUT request with the `User`.`_id` as a parameter, and a JSON Body of `User`
+Make a PUT request with the `User._id` as a parameter, and a JSON Body of `User`
 fields you'd like to update in alignment with [User](#userschema) field
 requirements.
 
-- **Path** 
+- **Path**
   - `/api/users/`
 - **Use**
   - PUT `127.0.0.1:3001/api/users/<user-id-here>`
@@ -230,9 +231,9 @@ requirements.
 
 ---
 
-### `DELETE` - Remove a `User` Entry
+### `DELETE` - Remove a `User` from Database
 
-Make a DELETE request with the `User`.`_id` as a paramter, and if the `_id` is valid
+Make a DELETE request with the `User._id` as a paramter, and if the `_id` is valid
 the user will be deleted from the database.
 
 - **Path**
@@ -248,10 +249,10 @@ the user will be deleted from the database.
 
 ## Route: **`/api/users/:userId/friends/:friendId`**
 
-### `POST` - Create 1-way Associtation To a `User` in `User`.`friends[]`
+### `POST` - Create One-Way Association To a `User` in `User.friends[]`
 
-Make a `POST` request to add another `User`.`_id` to a target `User`.`friends[]` via
-url parameters.
+Make a `POST` request to add another `User._id` to a target `User.friends[]` via
+a url parameter.
 > [See here for more details on the User Schema](#userschema).
 
 - **Path**
@@ -265,8 +266,8 @@ url parameters.
 
 ### `DELETE` - Remove Existing `friends` Association
 
-Make a `DELETE` request to remove another `User`.`_id` from a target `User`.`friends[]` via
-url parameters.
+Make a `DELETE` request to remove another `User._id` from a target `User.friends[]` via
+a url parameter.
 > [See here for more details on the User Schema](#userschema).
 
 - **Path**
@@ -381,7 +382,7 @@ Make a `DELETE` request to receive with a specific `Thought`.`_id` paramater.
 
 ## Route: **`/api/thoughts/<thought-id-here>/reactions`**
 
-### `POST` - Create a New `Reaction` Entry on a `Thought`
+### `POST` - Create a New `Reaction` Database Entry Associated to a `Thought`
 
 Make a `POST` request to add a `Reaction` to a `Thought` by including the
 existing `Thought`.`_id` as a pramater, and the reaction `BODY` as JSON.
@@ -454,11 +455,11 @@ to a thought too.
     - Contains `Thought`.`_id` values  for each `Thought` created by `User`
   - `friends`
     - Array
-    - Contains ObjectId values from other `User` Scehama objects.
+    - Contains ObjectId values from other `User` Schema objects.
 - **Virtuals**
   - `friendCount`
     - Int
-    - Counts total number of `User`.`_id` values in `User`.`friends[]` every-time User Schema Object is accessed
+    - Counts total number of `User._id` values in `User.friends[]` every-time User Schema Object is accessed
 
 ## `ThoughtSchema`
 
