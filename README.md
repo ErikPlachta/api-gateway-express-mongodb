@@ -1,4 +1,4 @@
-# API Gateway for a Social Network Platform - Concept App
+# RESTful API Gateway for a Social Network Platform - Concept App
 
 ## Summary
 
@@ -8,7 +8,9 @@ Database, and Mongoose as my ODM.
 
 ## The Concept
 
-I've built a social network platform with a fully-functional API Gateway.
+A social network platform with a fully-functional RESTful API gateway. The API
+connects to a NoSQL Database that is fast, flexible, and allows for large volumes
+of unstructured data.
 
 - All activity within the platform is tied to a unique `User`.
 - A `User` has full crud-functionality.
@@ -20,49 +22,83 @@ I've built a social network platform with a fully-functional API Gateway.
 
 ## Table of Contents
 
-- [API Gateway for a Social Network Platform - Concept App](#api-gateway-for-a-social-network-platform---concept-app)
+- [RESTful API Gateway for a Social Network Platform - Concept App](#restful-api-gateway-for-a-social-network-platform---concept-app)
   - [Summary](#summary)
   - [The Concept](#the-concept)
   - [Table of Contents](#table-of-contents)
-  - [Getting Setup](#getting-setup)
-    - [Headless | MongoDB & Express](#headless--mongodb--express)
-      - [Requirements & Getting Setup](#requirements--getting-setup)
-  - [API Reference Guide](#api-reference-guide)
-    - [**`User`**](#user)
-      - [**POST** - Create New `User`](#post---create-new-user)
-    - [**`User.friends`**](#userfriends)
-  - [Milestone Goals](#milestone-goals)
   - [Node Package Dependencies](#node-package-dependencies)
   - [Repo Stats](#repo-stats)
-  - [Contributors](#contributors)
-    - [Erik Plachta](#erik-plachta)
-  - [Questions?](#questions)
+  - [Contact Erik Plachta](#contact-erik-plachta)
+  - [Getting Setup](#getting-setup)
+- [API Reference](#api-reference)
+  - [**`User`**](#user)
+    - [**POST** - Create a New `User`](#post---create-a-new-user)
+    - [**GET** - ALL `User` accounts](#get---all-user-accounts)
+    - [**GET** - Single `User` account by `id`](#get---single-user-account-by-id)
+    - [**PUT** - Change `User` values](#put---change-user-values)
+    - [**DELETE** - Remove `User`](#delete---remove-user)
+  - [**`User.friends`**](#userfriends)
+- [Database Structure](#database-structure)
+  - [`UserSchema`](#userschema)
+  - [`ThoughtSchema`](#thoughtschema)
+  - [`ReactionSchema`](#reactionschema)
 
 ---
 
-## Getting Setup
+## Node Package Dependencies
 
-This APP is designed to be a headless API Gateway. You'll need to use 
+<!-- - **Utility**
+  - [dotenv](https://www.npmjs.com/package/dotenv) - Used for local enviornment variables. -->
+  <!-- - [moment]([#moment](https://www.npmjs.com/package/moment)) - Used by full-stack front helper functions for date-time manipulation. -->
+<!-- - **Security**
+  - [express-session](https://www.npmjs.com/package/express-session) - Used to allow a secure client sessions via the web browsers cookies/local caching.
+  - [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) - Used to create a session between user and the Database.
+  - [bcrypt](https://www.npmjs.com/package/bcrypt) - Used to hash user passwords. -->
+- [express](https://www.npmjs.com/package/express) - The controller managing all communication between view and the database.
+<!-- - **View**
+  - [express-handlebars](https://www.npmjs.com/package/express-handlebars) - The View engine running the users for full-stack app. -->
+- [Mongoose](https://www.npmjs.com/package/mongoose) - A DRM for the MongoDB API database.
+  <!-- - [mysql2](#mysql2) - A DRM for MySQL/JawsDB full-stack frontend User database.
+  - [sequelize](https://www.npmjs.com/package/sequelize) - ORM for MySQL/JawsDB full-stack frontend user database. -->
+
+## Repo Stats
+
+[![GitHub license](https://img.shields.io/github/license/ErikPlachta/api-gateway-express-mongodb)](https://github.com/ErikPlachta/api-gateway-express-mongodb)
+
+[![GitHub Number of Languages](https://img.shields.io/github/languages/count/ErikPlachta/api-gateway-express-mongodb)](https://github.com/ErikPlachta/api-gateway-express-mongodb)
+[![GitHub top Language](https://img.shields.io/github/languages/top/ErikPlachta/api-gateway-express-mongodb)](https://github.com/ErikPlachta/api-gateway-express-mongodb)
+
+[![GitHub issues](https://img.shields.io/github/issues/ErikPlachta/api-gateway-express-mongodb)](https://github.com/ErikPlachta/api-gateway-express-mongodb/issues)
+![GitHub last commit](https://img.shields.io/github/last-commit/erikplachta/api-gateway-express-mongodb)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/erikplachta/api-gateway-express-mongodb)
+
+## Contact [Erik Plachta](https://github.com/ErikPlachta)
+
+If you want to get in touch talk dev, collaborate, help improve my work, feel
+free to reaech out to me on [Twitter](https://www.twitter.com/erikplachta/) or
+[LinkedIn](https://www.linkedin.com/in/erikplachta/).
+
+## Getting Setup
 
 <!-- The APP can either be ran Headless as an API Gateway or as a complete Full-Stack. -->
 
-### Headless | MongoDB & Express
+<!-- ### Headless | MongoDB & Express -->
 
-The headless version of the APP is a Model and Controller from the MVC model. It's
-meant to server as an API-Gateway to an already existing View.
+<!-- > It's meant to server as an API-Gateway to an already existing View. -->
 
 <!-- #### Requirements - Getting Set Up for Headless -->
-#### Requirements & Getting Setup
+**Steps**
 
-- [MongoDB](mongodb.com/try/download/community) is fully insatlled and setup
+1. [MongoDB](mongodb.com/try/download/community) is fully insatlled and setup
   > [See guide here for help](https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb)
-- [Node.js](https://nodejs.dev/download) is fully instealled and setup
+2. [Node.js](https://nodejs.dev/download) is fully instealled and setup
   > [See guide here for help](https://coding-boot-camp.github.io/full-stack/nodejs/how-to-install-nodejs)
-- [Download the Repo](https://github.com/ErikPlachta/api-gateway-express-mongodb/archive/refs/heads/main.zip)
-- Unzip and Open with your IDE of choice
-- Install Node Packages with `npm i`
-- Run with `npm start`
-- Open your API
+3. [Download the Repo](https://github.com/ErikPlachta/api-gateway-express-mongodb/archive/refs/heads/main.zip)
+4. Unzip and Open with your IDE of choice
+5. Install Node Packages with `npm i`
+6. Run with `npm start`
+7. Start making API calls
+    > *This APP is designed to be a headless RESTful API gateway. You'll need to use a tool like [Insomnia](https://insomnia.rest/download) to use it.*
 
 <!-- ### B. Full-Stack | MongoDB, MySQL, Express, Handlebars
   
@@ -89,47 +125,95 @@ Controller, and View for a complete user experience.
 
 ---
 
-## API Reference Guide
+# API Reference
 
-### **`User`**
-> Accounts with access to API functionality
+## **`User`**
 
-#### **POST** - Create New `User`
+Accounts with access to API functionality
+> [See here for more details on the User Schema](#user-schema).
 
-**`/api/users/`**
+---
 
->Example:
->
-> POST to 👉🏼 `127.0.0.1:3001/api/users/` with JSON body
->
-> ```json
-> {
->   "username"  : "ErikPlachta",
->   "email"     : "erik@noemail.com",
->   "password"  : "my-password"
-> }
-> ```
+### **POST** - Create a New `User`
 
-**GET** - ALL `User` accounts
+Make a POST request to create a new `User` with a JSON Body a unique `username`, a unique
+`email` and a password that is 6 or more characters.
+> [See here for more details on the User Schema](#user-schema).
 
-**`/api/users/`**
+- **Path**
+  - `/api/users/`
+- **Use**
+  - POST  `127.0.0.1:3001/api/users/`
+  - JSON Body
 
-> Example:
->
->
+    ```json
+    {
+      "username"  : "<username-goes-here>",
+      "email"     : "<your@email.com>",
+      "password"  : "<your-password>"
+    }
+    ```
 
-**GET** - Single `User` account by `id`
-> `/api/users/:id`
->> Example: 
+---
 
-**PUT** - Change `User` values
-> `/api/users/`
->> Example: 
+### **GET** - ALL `User` accounts
 
-**DELETE** - Remove `User`
-> `/api/users/:id`
+Make a GET request to receive ALL `User` data within the database. The `thoughts[]`
+and `friends[]` fields will just return the related Schema object `id`s.
+> [See here for more details on the User Schema](#user-schema).
 
-### **`User.friends`** 
+- **Path**
+  - `/api/users/`
+- **Use** 
+  - GET `127.0.0.1:3001/api/users`
+
+---
+
+### **GET** - Single `User` account by `id`
+
+Make a GET request for a specific `User` by `id` to get a single `User` with
+populated `thoughts[]` and `friends[]` content.
+
+- **Path**
+  - `/api/users/:id`
+- **Use**
+  - GET `127.0.0.1:3001/api/users/<user-id-here>`
+
+---
+
+### **PUT** - Change `User` values
+
+Make a PUT request with the `User`.`id` as a parameter, and a JSON Body of `User`
+fields you'd like to update in alignment with [User](#user-schema) field
+requirements.
+
+- **Path** 
+  - `/api/users/`
+- **Use**
+  - PUT `127.0.0.1:3001/api/users/<user-id-here>`
+
+    ```json
+      {
+      "username"  : "<new-unique-username>",
+      "email"     : "<new-unique@email.com>",
+      "password"  : "<new-password>"
+      }
+    ```
+
+---
+
+### **DELETE** - Remove `User`
+
+- **Path**
+  - `/api/users/:id`
+- **Use**
+  - DELETE `127.0.0.1:3001/api/users/<user-id-here>`
+
+---
+
+---
+
+## **`User.friends`** 
 > Association to toher users by `User`.`id`
 > URL 👉🏼 /api/users/:userId/friends/:friendId
 
@@ -163,48 +247,75 @@ Controller, and View for a complete user experience.
 
 ---
 
-## Milestone Goals
+# Database Structure
 
-- [x] **Headless Functionality**    - Completed 03/05/2022
-- [ ] **Full-Stack functionality**  -
+## `UserSchema`
 
-## Node Package Dependencies
+- **Schema**
+  - `username`
+    - String
+    - Unique
+    - Required
+  - `email`
+    - String
+    - Unique
+    - Required
+    - valid email address
+  - `password`
+    - String
+    - Required
+    - 6 or more characters
+  - `date_created`
+    - Date
+    - Auto generated on creation
+  - `thoughts`
+    - Array
+    - Contains `Thought`.`id` values  for each `Thought` created by `User`
+  - `friends`
+    - Array
+    - Contains ObjectId values from other `User` Scehama objects.
+- **Virtuals**
+  - `friendCount`
+    - Int
+    - Counts total number of `User`.`id` values in `User`.`friends[]` every-time User Schema Object is accessed
 
-<!-- - **Utility**
-  - [dotenv](https://www.npmjs.com/package/dotenv) - Used for local enviornment variables. -->
-  <!-- - [moment]([#moment](https://www.npmjs.com/package/moment)) - Used by full-stack front helper functions for date-time manipulation. -->
-<!-- - **Security**
-  - [express-session](https://www.npmjs.com/package/express-session) - Used to allow a secure client sessions via the web browsers cookies/local caching.
-  - [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) - Used to create a session between user and the Database.
-  - [bcrypt](https://www.npmjs.com/package/bcrypt) - Used to hash user passwords. -->
-- **Controller**
-  - [express](https://www.npmjs.com/package/express) - The controller managing all communication between view and the database.
-<!-- - **View**
-  - [express-handlebars](https://www.npmjs.com/package/express-handlebars) - The View engine running the users for full-stack app. -->
-- **Model**
-  - [Mongoose](https://www.npmjs.com/package/mongoose) - A DRM for the MongoDB API database.
-  <!-- - [mysql2](#mysql2) - A DRM for MySQL/JawsDB full-stack frontend User database.
-  - [sequelize](https://www.npmjs.com/package/sequelize) - ORM for MySQL/JawsDB full-stack frontend user database. -->
+## `ThoughtSchema`
 
-## Repo Stats
+- **Schema**
+  - `text`
+    - String
+    - Min-Max of 1-280 characters
+    - Required
+  - `username`
+    - String
+    - Required
+    - References a `User` schema object's `username` field to associate thought to a `User`
+  - `date_created`
+    - Date
+    - Auto generated on creation
+  - `reactions`
+    - Array
+    - Contains `Reaction`.`id` values for each unique reaction to `Thought`
+- **Virtuals**
+  - `reactionCount`
+    - Int
+    - Counts total number of `Reaction`.`id` values in `Thought`.`reactions[]` every-time `Thought` Schema Object is accessed
 
-[![GitHub license](https://img.shields.io/github/license/ErikPlachta/api-gateway-express-mongodb)](https://github.com/ErikPlachta/api-gateway-express-mongodb)
+## `ReactionSchema`
 
-[![GitHub Number of Languages](https://img.shields.io/github/languages/count/ErikPlachta/api-gateway-express-mongodb)](https://github.com/ErikPlachta/api-gateway-express-mongodb)
-[![GitHub top Language](https://img.shields.io/github/languages/top/ErikPlachta/api-gateway-express-mongodb)](https://github.com/ErikPlachta/api-gateway-express-mongodb)
-
-[![GitHub issues](https://img.shields.io/github/issues/ErikPlachta/api-gateway-express-mongodb)](https://github.com/ErikPlachta/api-gateway-express-mongodb/issues)
-![GitHub last commit](https://img.shields.io/github/last-commit/erikplachta/api-gateway-express-mongodb)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/y/erikplachta/api-gateway-express-mongodb)
-
-## Contributors
-
-### [Erik Plachta](https://github.com/ErikPlachta)
+- **Schema**
+  - `reactionId`
+    - Schema.Type.objectId
+    - Defaults new Type ObjectId
+  - `username`
+    - String
+    - Required
+  - `reactionbody`
+    - String
+    - Required
+    - Min-Max of 1-280 characters
+  - `date_created`
+    - Date
+    - Auto generated on creation
 
 ---
-
-## Questions?
-
-Let's get in touch :point_down:
-
-> Feel free to contact me on my Twitter @ErikPlachta

@@ -26,10 +26,10 @@ const UserSchema = new Schema(
           default: Date.now,
           get: date_creted_value => dateFormat(date_creted_value)
         },
-        date_login: {
-          type: Date,
-          default: Date.now
-        },
+        // date_login: {
+        //   type: Date,
+        //   default: Date.now
+        // },
         //-- related to other schemas
         thoughts: [{
           type: Schema.Types.ObjectId, 
@@ -52,7 +52,6 @@ const UserSchema = new Schema(
 UserSchema.virtual('friendCount').get(function() {
   return this.friends.reduce((total, friend) => total + 1, 0);
 });
-
 
 const User = model('User', UserSchema);
 
