@@ -2,18 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "..\\UNC"
-		},
-		{
-			"path": "..\\UNC\\FullstackBootcamp\\Modules\\M18_NoSQL_MongoDB-Mongoose"
-		},
-		{
-			"path": "..\\UNC\\FullstackBootcamp\\Module Projects\\18_NoSQL"
-		},
-		{
-			"path": "..\\UNC\\uncc-virt-bo-fsf-pt-10-2021-u-b\\18-NoSQL"
 		}
 	]
 }
