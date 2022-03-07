@@ -37,6 +37,7 @@ of unstructured data.
   - [**`/api/users/:id`**](#apiusersid)
     - [`GET` - Single `User` Entry By `_id`](#get---single-user-entry-by-_id)
     - [`PUT` - Change `User` Value(s) by `_id`](#put---change-user-values-by-_id)
+  - [> <img src="./public/images/put-api-users-id.gif" width="600">](#-)
     - [`DELETE` - Remove a `User` Entry](#delete---remove-a-user-entry)
   - [**`/api/users/:userId/friends/:friendId`**](#apiusersuseridfriendsfriendid)
     - [`POST` - Create 1-way Associtation To a `User` in `User`.`friends[]`](#post---create-1-way-associtation-to-a-user-in-userfriends)
@@ -153,6 +154,7 @@ Make a POST request to create a new `User` with a JSON Body a unique `username`,
 `email` and a password that is 6 or more characters.
 > [See here for more details on the User Schema](#userschema).
 
+
 - **Path**
   - `/api/users/`
 - **Use**
@@ -167,6 +169,9 @@ Make a POST request to create a new `User` with a JSON Body a unique `username`,
     }
     ```
 
+- **Example**
+  > <img src="./public/images/post-api-users.gif" width="600">
+
 ---
 
 ### `GET` - ALL `User` Entries
@@ -177,6 +182,8 @@ and `friends[]` fields will just return the related Schema object `_id`s.
 
 - **Path**
   - `/api/users/`
+- **Example**
+  > <img src="./public/images/get-api-users.gif" width="600">
 - **Use** 
   - GET `127.0.0.1:3001/api/users`
 
@@ -195,6 +202,8 @@ populated `thoughts[]` and `friends[]` content.
 
 - **Path**
   - `/api/users/:id`
+- **Example**
+  > <img src="./public/images/get-api-users-id.gif" width="600">
 - **Use**
   - GET `127.0.0.1:3001/api/users/<user-id-here>`
 
@@ -219,6 +228,8 @@ requirements.
       }
     ```
 
+- **Example**
+  > <img src="./public/images/put-api-users-id.gif" width="600">
 ---
 
 ### `DELETE` - Remove a `User` Entry
@@ -230,6 +241,8 @@ the user will be deleted from the database.
   - `/api/users/:id`
 - **Use**
   - DELETE `127.0.0.1:3001/api/users/<user-id-here>`
+- **Example**
+  > <img src="./public/images/delete-api-users-id.gif" width="600">
 
 ---
 
@@ -249,6 +262,8 @@ url parameters.
   - /api/users/:userId/friends/:friendId
 - **Use**
   - `127.0.0.1:3001/api/users/<user-id-adding-friend>/friends/<user-id-of-friend-adding>`
+- **Example**
+  > <img src="./public/images/post-api-users-userId-friends-friendId.gif" width="600">
 
 ---
 
@@ -262,6 +277,8 @@ url parameters.
   - /api/users/:userId/friends/:friendId
 - **Use**
   - `127.0.0.1:3001/api/users/<user-id-adding-friend>/friends/<user-id-of-friend-removing>`
+- **Example**
+  > <img src="./public/images/delete-api-users-userId-friends-friendId.gif" width="600">
 
 ---
 
@@ -291,6 +308,10 @@ Make a POST request to create a new `Thought` with a JSON body that includes a
     }
     ```
 
+- **Example**
+  > <img src="./public/images/post-api-thoughts.gif" width="600">
+
+
 ---
 
 ### `GET` - ALL `Thought` Entries
@@ -302,6 +323,9 @@ Make a GET request to receive ALL `Thought` entries within the database.
   - `/api/thoughts/`
 - **Use** 
   - GET `127.0.0.1:3001/api/thoughts`
+
+- **Example**
+  > <img src="./public/images/get-api-thoughts.gif" width="600">
 
 ---
 
@@ -321,6 +345,8 @@ parameter.
   - `/api/thoughts/:id`
 - **Use**
   - GET `127.0.0.1:3001/api/thoughts/<thought-id>`
+- **Example**
+  > <img src="./public/images/get-api-thoughts-id.gif" width="600">
 
 ---
 
@@ -355,6 +381,8 @@ Make a `DELETE` request to receive with a specific `Thought`.`_id` paramater.
   - `/api/thoughts/:id`
 - **Use**
   - DELETE `127.0.0.1:3001/api/thoughts/<thought-id>`
+- **Example**
+  > <img src="./public/images/delete-api-thoughts-id.gif" width="600">
 
 ---
 
@@ -382,6 +410,9 @@ existing `Thought`.`_id` as a pramater, and the reaction `BODY` as JSON.
     }
     ```
 
+- **Example**
+  > <img src="./public/images/post-api-thoughts-thoughtId-reactions.gif" width="600">
+
 ---
 
 ---
@@ -397,6 +428,8 @@ existing `Thought`.`_id` and `Reaction`.`_id` as pramaters.
   - `/api/thoughts/<thought-id-here>/reactions/<reaction-id-here>`
 - **Use**
   - `127.0.0.1:3001/thoughts/<thought-id-here>/reactions/<reaction-id-here>`
+- **Example**
+  > <img src="./public/images/delete-api-thoughts-thoughtId-reactions-reactionId.gif" width="600">
 
 ---
 
