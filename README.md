@@ -68,10 +68,12 @@ of unstructured data.
   - [express-session](https://www.npmjs.com/package/express-session) - Used to allow a secure client sessions via the web browsers cookies/local caching.
   - [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) - Used to create a session between user and the Database.
   - [bcrypt](https://www.npmjs.com/package/bcrypt) - Used to hash user passwords. -->
+- [dotenv](https://www.npmjs.com/package/dotenv) - Used for local enviornment variables.
 - [express](https://www.npmjs.com/package/express) - The controller managing all communication between view and the database.
 <!-- - **View**
   - [express-handlebars](https://www.npmjs.com/package/express-handlebars) - The View engine running the users for full-stack app. -->
 - [Mongoose](https://www.npmjs.com/package/mongoose) - A DRM for the MongoDB API database.
+- [Nodemon](https://www.npmjs.com/package/nodemon) - Using as a dev-dependcy to simplify development.
   <!-- - [mysql2](#mysql2) - A DRM for MySQL/JawsDB full-stack frontend User database.
   - [sequelize](https://www.npmjs.com/package/sequelize) - ORM for MySQL/JawsDB full-stack frontend user database. -->
 
