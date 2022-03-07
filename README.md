@@ -498,7 +498,7 @@ to a thought too.
 ## `ReactionSchema`
 
 - **Schema**
-  - `reactionId`
+  - `_id`
     - Schema.Type.objectId
     - Defaults new Type ObjectId
   - `username`
