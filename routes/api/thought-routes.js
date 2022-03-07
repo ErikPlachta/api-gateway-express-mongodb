@@ -22,7 +22,7 @@ router.route('/')
 router.route('/:id')
     .get(getThoughtById)
     .put(updateThoughtById)
-    .get(deleteThoughtById)
+    .delete(deleteThoughtById)
 
 
     // /api/thoughts/:thoughtId/reactions

@@ -4,7 +4,6 @@
     "description": "An API using MongoDB and Mongoose for a Model.",
     "main": "server.js",
     "scripts": {
-        "test": "jest",
         "start": "node server.js",
         "watch": "nodemon server.js"
     },
