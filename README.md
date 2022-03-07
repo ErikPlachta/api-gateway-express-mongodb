@@ -31,13 +31,24 @@ of unstructured data.
   - [Contact Erik Plachta](#contact-erik-plachta)
   - [Getting Setup](#getting-setup)
 - [API Reference](#api-reference)
-  - [**`User`**](#user)
-    - [**POST** - Create a New `User`](#post---create-a-new-user)
-    - [**GET** - ALL `User` accounts](#get---all-user-accounts)
-    - [**GET** - Single `User` account by `id`](#get---single-user-account-by-id)
-    - [**PUT** - Change `User` values](#put---change-user-values)
-    - [**DELETE** - Remove `User`](#delete---remove-user)
-  - [**`User.friends`**](#userfriends)
+  - [**`/api/users`**](#apiusers)
+    - [`POST` - Create a New `User` Entry](#post---create-a-new-user-entry)
+    - [`GET` - ALL `User` Entries](#get---all-user-entries)
+  - [**`/api/users/:id`**](#apiusersid)
+    - [`GET` - Single `User` Entry By `_id`](#get---single-user-entry-by-_id)
+    - [`PUT` - Change `User` Value(s) by `_id`](#put---change-user-values-by-_id)
+    - [`DELETE` - Remove a `User` Entry](#delete---remove-a-user-entry)
+  - [**`/api/users/:userId/friends/:friendId`**](#apiusersuseridfriendsfriendid)
+    - [`POST` - Create 1-way Associtation To a `User` in `User`.`friends[]`](#post---create-1-way-associtation-to-a-user-in-userfriends)
+    - [`DELETE` - Remove Existing `friends` Association](#delete---remove-existing-friends-association)
+  - [**`/api/thoughts/`**](#apithoughts)
+    - [`POST` - Create a New `Thought` Entry](#post---create-a-new-thought-entry)
+    - [`GET` - ALL `Thought` Entries](#get---all-thought-entries)
+  - [**`/api/thoughts/:id`**](#apithoughtsid)
+    - [`GET` - Single `Thought` Entry by `_id`](#get---single-thought-entry-by-_id)
+    - [`PUT` - Change `Thought` Value(s) by `_id`](#put---change-thought-values-by-_id)
+    - [`DELETE` - Remove a `Thought` Entry by `_id`](#delete---remove-a-thought-entry-by-_id)
+  - [**`/api/thoughts/<thought-id-here>/reactions`**](#apithoughtsthought-id-herereactions)
 - [Database Structure](#database-structure)
   - [`UserSchema`](#userschema)
   - [`ThoughtSchema`](#thoughtschema)
@@ -127,18 +138,15 @@ Controller, and View for a complete user experience.
 
 # API Reference
 
-## **`User`**
-
-Accounts with access to API functionality
-> [See here for more details on the User Schema](#user-schema).
+## **`/api/users`**
 
 ---
 
-### **POST** - Create a New `User`
+### `POST` - Create a New `User` Entry
 
 Make a POST request to create a new `User` with a JSON Body a unique `username`, a unique
 `email` and a password that is 6 or more characters.
-> [See here for more details on the User Schema](#user-schema).
+> [See here for more details on the User Schema](#userschema).
 
 - **Path**
   - `/api/users/`
@@ -156,11 +164,11 @@ Make a POST request to create a new `User` with a JSON Body a unique `username`,
 
 ---
 
-### **GET** - ALL `User` accounts
+### `GET` - ALL `User` Entries
 
 Make a GET request to receive ALL `User` data within the database. The `thoughts[]`
-and `friends[]` fields will just return the related Schema object `id`s.
-> [See here for more details on the User Schema](#user-schema).
+and `friends[]` fields will just return the related Schema object `_id`s.
+> [See here for more details on the User Schema](#userschema).
 
 - **Path**
   - `/api/users/`
@@ -169,9 +177,15 @@ and `friends[]` fields will just return the related Schema object `id`s.
 
 ---
 
-### **GET** - Single `User` account by `id`
+---
 
-Make a GET request for a specific `User` by `id` to get a single `User` with
+## **`/api/users/:id`**
+
+---
+
+### `GET` - Single `User` Entry By `_id`
+
+Make a GET request for a specific `User` by `_id` to get a single `User` with
 populated `thoughts[]` and `friends[]` content.
 
 - **Path**
@@ -181,10 +195,10 @@ populated `thoughts[]` and `friends[]` content.
 
 ---
 
-### **PUT** - Change `User` values
+### `PUT` - Change `User` Value(s) by `_id`
 
-Make a PUT request with the `User`.`id` as a parameter, and a JSON Body of `User`
-fields you'd like to update in alignment with [User](#user-schema) field
+Make a PUT request with the `User`.`_id` as a parameter, and a JSON Body of `User`
+fields you'd like to update in alignment with [User](#userschema) field
 requirements.
 
 - **Path** 
@@ -202,7 +216,10 @@ requirements.
 
 ---
 
-### **DELETE** - Remove `User`
+### `DELETE` - Remove a `User` Entry
+
+Make a DELETE request with the `User`.`_id` as a paramter, and if the `_id` is valid
+the user will be deleted from the database.
 
 - **Path**
   - `/api/users/:id`
@@ -213,43 +230,149 @@ requirements.
 
 ---
 
-## **`User.friends`** 
-> Association to toher users by `User`.`id`
-> URL 👉🏼 /api/users/:userId/friends/:friendId
+## **`/api/users/:userId/friends/:friendId`**
 
-- **POST** - Create 1-way associtation to a `User` in  `User`.`friends`
-> URL 👉🏼 /api/users/:userId/friends/:friendId
+---
 
-- DELETE to remove a friend from a user's friend list
+### `POST` - Create 1-way Associtation To a `User` in `User`.`friends[]`
 
-- `Thought` CRUD Functionality
-  - x
+Make a `POST` request to add another `User`.`_id` to a target `User`.`friends[]` via
+url parameters.
+> [See here for more details on the User Schema](#userschema).
+
+- **Path**
+  - /api/users/:userId/friends/:friendId
+- **Use**
+  - `127.0.0.1:3001/api/users/<user-id-adding-friend>/friends/<user-id-of-friend-adding>`
+
+### `DELETE` - Remove Existing `friends` Association
+
+Make a `DELETE` request to remove another `User`.`_id` from a target `User`.`friends[]` via
+url parameters.
+> [See here for more details on the User Schema](#userschema).
+
+- **Path**
+  - /api/users/:userId/friends/:friendId
+- **Use**
+  - `127.0.0.1:3001/api/users/<user-id-adding-friend>/friends/<user-id-of-friend-removing>`
+
+---
+
+---
+
+## **`/api/thoughts/`**
+
+---
+
+### `POST` - Create a New `Thought` Entry
+
+Make a POST request to create a new `Thought` with a JSON body that includes a
+`username`, `userId`, and the content of the thought in `text`.
+> [See here for more details on the thought Schema](#thoughtschema).
+
+- **Path**
+  - `/api/thoughts/`
+- **Use**
+  - POST  `127.0.0.1:3001/api/thought/`
+  - JSON Body
+
+    ```json
+    {
+      "thoughtText" : "<text-payload-of-thought-goes-here>",
+      "username"    : "<username-of-user-posting-thought-goes-here>",
+      "userId"      : "<user-posting-thought-id-goes-here>"
+    }
+    ```
+
+---
+
+### `GET` - ALL `Thought` Entries
+
+Make a GET request to receive ALL `Thought` entries within the database.
+> [See here for more details on the Thought Schema](#thoughtschema).
+
+- **Path**
+  - `/api/thoughts/`
+- **Use** 
+  - GET `127.0.0.1:3001/api/thoughts`
+
+---
+
+---
+
+## **`/api/thoughts/:id`**
+
+---
+
+### `GET` - Single `Thought` Entry by `_id`
+
+Make a GET request to receive a specific `Thought` entry via a `thought`.`_id`
+parameter.
+> [See here for more details on the Thought Schema](#thoughtschema).
+
+- **Path**
+  - `/api/thoughts/:id`
+- **Use**
+  - GET `127.0.0.1:3001/api/thoughts/<thought-id-goes-here>`
+
+---
+
+### `PUT` - Change `Thought` Value(s) by `_id`
+
+Make a GET request to receive a specific `Thought` entry within the database by
+sending a `thought`.`_id` parameter.
+> [See here for more details on the Thought Schema](#thoughtschema).
+
+- **Path**
+  - `/api/thoughts/:id`
+- **Use**
+  - PUT `127.0.0.1:3001/api/thoughts/<thought-id-goes-here>`
+  - JSON Body
+
+    ```json
+    {
+      "thoughtText" : "<thought-text-change>",
+      "username"    : "<username-change>",
+      "userId"      : "<userId-associated-to-username-change>"
+    }
+    ```
+
+---
+
+127.0.0.1:3001/api/thoughts/6224140214aa13960d12bb28
+### `DELETE` - Remove a `Thought` Entry by `_id`
+
+Make a `DELETE` request to receive with a specific `Thought`.`_id` paramater.
+> [See here for more details on the Thought Schema](#thoughtschema).
+
+- **Path**
+  - `/api/thoughts/:id`
+- **Use**
+  - DELETE `127.0.0.1:3001/api/thoughts/<thought-id-goes-here>`
+
+---
+
+---
+
+## **`/api/thoughts/<thought-id-here>/reactions`**
+
 - `Reaction` CRUD Functionality
   - x
   - can add or remove `friends`.
   - `User` can post or delete a `Thought`.
   - `User` can post or delete a `Reaction` as a response within a `Thought`.
 
-**/api/thoughts**
-
-- GET to get all thoughts
-- GET to get a single thought by its _id
-- POST to create a new thought
-  - (__Reminder: Don't forget to push the created thought's _id to the associated user's thoughts array field__)
-  - Example: ```{ "thoughtText": "What if...", "username": "ErikPlachta", "userId": "5edff358a0fcb779aa7b118b"}```
-- PUT to update a thought by its _id
-- DELETE to remove a thought by its _id
-
-**/api/thoughts/:thoughtId/reactions**
-
-- POST to create a reaction stored in a single thought's reactions array field
-- DELETE to pull and remove a reaction by the reaction's reactionId value
+---
 
 ---
 
 # Database Structure
 
 ## `UserSchema`
+
+A `User` is an registered account within the database. They are provided a unique
+`_id`, can have `friends`, post or delete a `thought`, and post or delete a `reaction`
+to a thought too.
 
 - **Schema**
   - `username`
@@ -270,19 +393,19 @@ requirements.
     - Auto generated on creation
   - `thoughts`
     - Array
-    - Contains `Thought`.`id` values  for each `Thought` created by `User`
+    - Contains `Thought`.`_id` values  for each `Thought` created by `User`
   - `friends`
     - Array
     - Contains ObjectId values from other `User` Scehama objects.
 - **Virtuals**
   - `friendCount`
     - Int
-    - Counts total number of `User`.`id` values in `User`.`friends[]` every-time User Schema Object is accessed
+    - Counts total number of `User`.`_id` values in `User`.`friends[]` every-time User Schema Object is accessed
 
 ## `ThoughtSchema`
 
 - **Schema**
-  - `text`
+  - `thoughtText`
     - String
     - Min-Max of 1-280 characters
     - Required
@@ -295,11 +418,11 @@ requirements.
     - Auto generated on creation
   - `reactions`
     - Array
-    - Contains `Reaction`.`id` values for each unique reaction to `Thought`
+    - Contains `Reaction`.`_id` values for each unique reaction to `Thought`
 - **Virtuals**
   - `reactionCount`
     - Int
-    - Counts total number of `Reaction`.`id` values in `Thought`.`reactions[]` every-time `Thought` Schema Object is accessed
+    - Counts total number of `Reaction`.`_id` values in `Thought`.`reactions[]` every-time `Thought` Schema Object is accessed
 
 ## `ReactionSchema`
 

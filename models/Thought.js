@@ -39,7 +39,7 @@ const ReactionSchema = new Schema(
 const ThoughtSchema = new Schema(
     //-- A root post/thought created by a user
     {
-        text: {
+        thoughtText: {
             type: String,
             minlength: 1,
             maxlength: 280,
