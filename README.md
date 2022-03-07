@@ -49,6 +49,9 @@ of unstructured data.
     - [`PUT` - Change `Thought` Value(s) by `_id`](#put---change-thought-values-by-_id)
     - [`DELETE` - Remove a `Thought` Entry by `_id`](#delete---remove-a-thought-entry-by-_id)
   - [**`/api/thoughts/<thought-id-here>/reactions`**](#apithoughtsthought-id-herereactions)
+    - [`POST` - Create a New `Reaction` Entry on a `Thought`](#post---create-a-new-reaction-entry-on-a-thought)
+  - [**`/api/thoughts/<thought-id-here>/reactions/<reaction-id-here>`**](#apithoughtsthought-id-herereactionsreaction-id-here)
+    - [`DELETE` - Remove a `Reaction` Entry from a `Thought`](#delete---remove-a-reaction-entry-from-a-thought)
 - [Database Structure](#database-structure)
   - [`UserSchema`](#userschema)
   - [`ThoughtSchema`](#thoughtschema)
@@ -156,7 +159,7 @@ Make a POST request to create a new `User` with a JSON Body a unique `username`,
 
     ```json
     {
-      "username"  : "<username-goes-here>",
+      "username"  : "<username>",
       "email"     : "<your@email.com>",
       "password"  : "<your-password>"
     }
@@ -245,6 +248,8 @@ url parameters.
 - **Use**
   - `127.0.0.1:3001/api/users/<user-id-adding-friend>/friends/<user-id-of-friend-adding>`
 
+---
+
 ### `DELETE` - Remove Existing `friends` Association
 
 Make a `DELETE` request to remove another `User`.`_id` from a target `User`.`friends[]` via
@@ -278,9 +283,9 @@ Make a POST request to create a new `Thought` with a JSON body that includes a
 
     ```json
     {
-      "thoughtText" : "<text-payload-of-thought-goes-here>",
-      "username"    : "<username-of-user-posting-thought-goes-here>",
-      "userId"      : "<user-posting-thought-id-goes-here>"
+      "thoughtText" : "<text-payload-of-thought>",
+      "username"    : "<username-of-user-posting-thought>",
+      "userId"      : "<user-posting-thought-id>"
     }
     ```
 
@@ -313,7 +318,7 @@ parameter.
 - **Path**
   - `/api/thoughts/:id`
 - **Use**
-  - GET `127.0.0.1:3001/api/thoughts/<thought-id-goes-here>`
+  - GET `127.0.0.1:3001/api/thoughts/<thought-id>`
 
 ---
 
@@ -326,7 +331,7 @@ sending a `thought`.`_id` parameter.
 - **Path**
   - `/api/thoughts/:id`
 - **Use**
-  - PUT `127.0.0.1:3001/api/thoughts/<thought-id-goes-here>`
+  - PUT `127.0.0.1:3001/api/thoughts/<thought-id>`
   - JSON Body
 
     ```json
@@ -339,7 +344,6 @@ sending a `thought`.`_id` parameter.
 
 ---
 
-127.0.0.1:3001/api/thoughts/6224140214aa13960d12bb28
 ### `DELETE` - Remove a `Thought` Entry by `_id`
 
 Make a `DELETE` request to receive with a specific `Thought`.`_id` paramater.
@@ -348,7 +352,7 @@ Make a `DELETE` request to receive with a specific `Thought`.`_id` paramater.
 - **Path**
   - `/api/thoughts/:id`
 - **Use**
-  - DELETE `127.0.0.1:3001/api/thoughts/<thought-id-goes-here>`
+  - DELETE `127.0.0.1:3001/api/thoughts/<thought-id>`
 
 ---
 
@@ -356,11 +360,41 @@ Make a `DELETE` request to receive with a specific `Thought`.`_id` paramater.
 
 ## **`/api/thoughts/<thought-id-here>/reactions`**
 
-- `Reaction` CRUD Functionality
-  - x
-  - can add or remove `friends`.
-  - `User` can post or delete a `Thought`.
-  - `User` can post or delete a `Reaction` as a response within a `Thought`.
+---
+
+### `POST` - Create a New `Reaction` Entry on a `Thought`
+
+Make a `POST` request to add a `Reaction` to a `Thought` by including the
+existing `Thought`.`_id` as a pramater, and the reaction `BODY` as JSON.
+
+- **Path**
+  - `/api/thoughts/<thought-id-here>/reactions`
+- **Use**
+  - `127.0.0.1:3001/thoughts/<thought-id-here>/reactions`
+  - JSON Body
+
+    ```json
+    {
+      "reactionBody" : "<text-payload-of-reaction>",
+      "username"    : "<username-of-user-posting-reaction>"
+    }
+    ```
+
+---
+
+---
+
+## **`/api/thoughts/<thought-id-here>/reactions/<reaction-id-here>`**
+
+### `DELETE` - Remove a `Reaction` Entry from a `Thought`
+
+Make a `DELETE` request  to remove a `Reaction` from a `Thought` by including the
+existing `Thought`.`_id` and `Reaction`.`_id` as pramaters.
+
+- **Path**
+  - `/api/thoughts/<thought-id-here>/reactions/<reaction-id-here>`
+- **Use**
+  - `127.0.0.1:3001/thoughts/<thought-id-here>/reactions/<reaction-id-here>`
 
 ---
 
