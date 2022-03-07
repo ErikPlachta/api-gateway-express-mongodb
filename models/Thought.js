@@ -8,7 +8,7 @@ const dateFormat = require('../utils/dateFormat');
 const ReactionSchema = new Schema(
     //-- A response to a thought created by a user
     {
-        reactionId: {
+        _id: {
             type: Schema.Types.ObjectId, 
             default: () => new Types.ObjectId()
         },
