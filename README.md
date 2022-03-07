@@ -37,7 +37,6 @@ of unstructured data.
   - [**`/api/users/:id`**](#apiusersid)
     - [`GET` - Single `User` Entry By `_id`](#get---single-user-entry-by-_id)
     - [`PUT` - Change `User` Value(s) by `_id`](#put---change-user-values-by-_id)
-  - [> <img src="./public/images/put-api-users-id.gif" width="600">](#-)
     - [`DELETE` - Remove a `User` Entry](#delete---remove-a-user-entry)
   - [**`/api/users/:userId/friends/:friendId`**](#apiusersuseridfriendsfriendid)
     - [`POST` - Create 1-way Associtation To a `User` in `User`.`friends[]`](#post---create-1-way-associtation-to-a-user-in-userfriends)
@@ -232,6 +231,7 @@ requirements.
 
 - **Example**
   > <img src="./public/images/put-api-users-id.gif" width="600">
+
 ---
 
 ### `DELETE` - Remove a `User` Entry
